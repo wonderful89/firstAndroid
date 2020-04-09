@@ -5,8 +5,12 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Button
+import android.util.Log
 
 import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.String
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,6 +18,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        val button = findViewById<Button>(R.id.button2)
+        button.setOnClickListener {
+            Log.d("test", "button click")
+        }
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
