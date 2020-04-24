@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.Button
 import android.util.Log
 import com.example.firstandroid.ui.login.LoginActivity
+import io.flutter.embedding.android.FlutterActivity
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content2_main.*
@@ -29,8 +30,18 @@ class MainActivity : AppCompatActivity() {
         button.setOnClickListener {
             Log.d("test", "button click")
 //            val intent = Intent(this, LoginActivity().javaClass)
-            val intent = Intent(this, TestListActivity().javaClass)
-            startActivity(intent)
+//            val intent = Intent(this, TestListActivity().javaClass)
+//            startActivity(intent)
+            // 创建的新的路由
+//            startActivity(
+//                FlutterActivity.createDefaultIntent(this)
+//            )
+            // 使用已经有的路由
+            startActivity(
+                FlutterActivity
+                    .withCachedEngine("first_android_route")
+                    .build(this)
+            )
         }
 
         fab.setOnClickListener { view ->
