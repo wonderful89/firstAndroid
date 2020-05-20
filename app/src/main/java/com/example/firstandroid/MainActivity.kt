@@ -18,15 +18,17 @@ import java.lang.String
 
 class MainActivity : AppCompatActivity() {
 
+    val _tag = "MainActivity"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        button2.text = "my_Button2"
+        buttonFlutter.text = "enterFlutter--changed"
 
         // 因为后执行，会覆盖下面的。
-        val button = findViewById<Button>(R.id.button2)
+        val button = findViewById<Button>(R.id.buttonFlutter)
         button.setOnClickListener {
             Log.d("test", "button click")
 //            val intent = Intent(this, LoginActivity().javaClass)
@@ -42,6 +44,18 @@ class MainActivity : AppCompatActivity() {
                     .withCachedEngine("first_android_route")
                     .build(this)
             )
+        }
+
+        buttonTest.setOnClickListener {
+            Log.d(_tag, "buttonClick click")
+            val intent = Intent(this, TestListActivity().javaClass)
+            startActivity(intent)
+        }
+
+        buttonAndroid.setOnClickListener {
+            Log.d(_tag, "buttonAndroid click")
+            val intent = Intent(this, LoginActivity().javaClass)
+            startActivity(intent)
         }
 
         fab.setOnClickListener { view ->

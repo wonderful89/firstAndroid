@@ -12,10 +12,14 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_test_list.*
 import org.jetbrains.anko.toast
+
 //import sun.jvm.hotspot.utilities.IntArray
 
+enum class ISSUE { test1, test2, test3 }
 
 class TestListActivity : AppCompatActivity() {
+
+    val _tag = "TestListActivity"
 
     val a = R2.drawable.ic_dialog_email
     private val fruitList: MutableList<Fruit> = ArrayList()
@@ -24,9 +28,9 @@ class TestListActivity : AppCompatActivity() {
         for (i in 0..1) {
             val apple = Fruit("Apple", R2.drawable.ic_dialog_email)
             fruitList.add(apple)
-            val banana = Fruit("Banana",  R2.drawable.ic_btn_speak_now)
+            val banana = Fruit("Banana", R2.drawable.ic_btn_speak_now)
             fruitList.add(banana)
-            val orange = Fruit("Orange",  R2.drawable.ic_input_add)
+            val orange = Fruit("Orange", R2.drawable.ic_input_add)
             fruitList.add(orange)
         }
     }
@@ -35,23 +39,26 @@ class TestListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test_list)
 
-        val colorArrays = resources.getStringArray(R.array.ListColors)
-        val arrayAdapter2 = ArrayAdapter(this, android.R.layout.simple_list_item_1, colorArrays)
+        var issues = ISSUE.values().map { i -> i.name }
+//        val colorArrays = resources.getStringArray(R.array.testArray)
+//        android.R.layout.simple_list_item_1
+        val arrayAdapter2 = ArrayAdapter(this, android.R.layout.simple_list_item_1, issues)
 
-        initFruits()
+//        initFruits()
 //        val arrayAdapter = FruitAdapter(fruitList as ArrayList<Fruit>, this)
 
         listView.adapter = arrayAdapter2
-        listView.dividerHeight = 10
+        listView.dividerHeight = 2
 
         listView.setOnItemClickListener { adapterView, view, position: Int, id: Long ->
-//            val item = colorArrays[position]
-//            Log.w("id = ", "$id, $item")
 //            toast(item)
-            val selectedItem = adapterView.getItemAtPosition(position)
-            Log.w("adapterView = ", "$adapterView")
-            Log.w("view = ", "$view")
-            Log.w("selectedItem = ", "$selectedItem")
+            when (adapterView.getItemAtPosition(position)) {
+                ISSUE.test1.name -> {
+                    Log.e(_tag, "test1")
+                }
+                ISSUE.test2.name -> Log.e(_tag, "test2")
+                else -> Log.e(_tag, "other")
+            }
         }
     }
 }
