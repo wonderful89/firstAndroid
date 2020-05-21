@@ -1,5 +1,7 @@
 package com.example.firstandroid.functions.test.listview
 
+import android.app.Activity
+import android.content.Intent
 import android.R as R2
 import com.example.firstandroid.R as R
 import android.os.Bundle
@@ -56,13 +58,25 @@ class TestListActivity : AppCompatActivity() {
 
         listView.setOnItemClickListener { adapterView, view, position: Int, id: Long ->
             //            toast(item)
+            var activity: Activity = Activity()
             when (adapterView.getItemAtPosition(position)) {
-                ISSUE.test1.name -> {
+                ISSUE.list_activity_one.name -> {
                     Log.e(_tag, "test1")
+                    activity = ListActivityOne()
                 }
-                ISSUE.test2.name -> Log.e(_tag, "test2")
+                ISSUE.list_activity_2.name -> {
+                    activity = ListActivityTwo()
+                    Log.e(_tag, "test2")
+                }
+                ISSUE.list_activity_3.name -> {
+                    activity = ListActivityThree()
+                    Log.e(_tag, "test3")
+                }
                 else -> Log.e(_tag, "other")
             }
+
+            val intent = Intent(this, activity.javaClass)
+            startActivity(intent)
         }
     }
 }

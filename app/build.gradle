@@ -30,15 +30,15 @@ android {
         sourceCompatibility 1.8
         targetCompatibility 1.8
     }
-//    sourceSets {
-//        main {
-//            res.srcDirs = [
-//                    'src/main/res/layouts/home',
-//                    'src/main/res/layouts',
-//                    'src/main/res'
-//            ]
-//        }
-//    }
+    sourceSets {
+        main {
+            res.srcDirs = [
+                    'src/main/res/layouts/home',
+                    'src/main/res/layouts',
+                    'src/main/res'
+            ]
+        }
+    }
 }
 
 dependencies {
