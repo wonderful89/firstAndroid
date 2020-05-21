@@ -6,3 +6,9 @@
 ```js
 IntelliJ IDEA has action for it: Code -> Reformat Code... (Ctrl+Alt+L / Cmd+Alt+L) It works not only for Kotlin, but also for any language supported by the IDE.
 ```
+
+## 找不到 layout/xml
+
+重启 android studio 工程
+
+

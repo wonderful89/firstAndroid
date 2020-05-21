@@ -6,6 +6,7 @@
 /.idea/modules.xml
 /.idea/workspace.xml
 /.idea/navEditor.xml
+flutter_module/pubspec.lock
 /.idea/assetWizardSettings.xml
 .DS_Store
 /build

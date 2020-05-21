@@ -1,21 +1,15 @@
-package com.example.firstandroid
+package com.example.firstandroid.functions.test.listview
 
-import android.content.Context
 import android.R as R2
 import com.example.firstandroid.R as R
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.firstandroid.functions.test.ISSUE
 import kotlinx.android.synthetic.main.activity_test_list.*
-import org.jetbrains.anko.toast
 
 //import sun.jvm.hotspot.utilities.IntArray
-
-enum class ISSUE { test1, test2, test3 }
 
 class TestListActivity : AppCompatActivity() {
 
@@ -26,11 +20,20 @@ class TestListActivity : AppCompatActivity() {
 
     private fun initFruits() {
         for (i in 0..1) {
-            val apple = Fruit("Apple", R2.drawable.ic_dialog_email)
+            val apple = Fruit(
+                "Apple",
+                R2.drawable.ic_dialog_email
+            )
             fruitList.add(apple)
-            val banana = Fruit("Banana", R2.drawable.ic_btn_speak_now)
+            val banana = Fruit(
+                "Banana",
+                R2.drawable.ic_btn_speak_now
+            )
             fruitList.add(banana)
-            val orange = Fruit("Orange", R2.drawable.ic_input_add)
+            val orange = Fruit(
+                "Orange",
+                R2.drawable.ic_input_add
+            )
             fruitList.add(orange)
         }
     }
@@ -41,8 +44,9 @@ class TestListActivity : AppCompatActivity() {
 
         var issues = ISSUE.values().map { i -> i.name }
 //        val colorArrays = resources.getStringArray(R.array.testArray)
-//        android.R.layout.simple_list_item_1
-        val arrayAdapter2 = ArrayAdapter(this, android.R.layout.simple_list_item_1, issues)
+
+        val arrayAdapter2 = ArrayAdapter<String>(this, R.layout.simple_list_item_x1, issues)
+//        val arrayAdapter2 = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, issues)
 
 //        initFruits()
 //        val arrayAdapter = FruitAdapter(fruitList as ArrayList<Fruit>, this)
@@ -51,7 +55,7 @@ class TestListActivity : AppCompatActivity() {
         listView.dividerHeight = 2
 
         listView.setOnItemClickListener { adapterView, view, position: Int, id: Long ->
-//            toast(item)
+            //            toast(item)
             when (adapterView.getItemAtPosition(position)) {
                 ISSUE.test1.name -> {
                     Log.e(_tag, "test1")

@@ -9,12 +9,12 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.util.Log
+import com.example.firstandroid.functions.test.listview.TestListActivity
 import com.example.firstandroid.ui.login.LoginActivity
 import io.flutter.embedding.android.FlutterActivity
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content2_main.*
-import java.lang.String
 
 class MainActivity : AppCompatActivity() {
 
