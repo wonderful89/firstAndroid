@@ -1,6 +1,6 @@
-package com.example.firstandroid.data
+package com.example.firstAndroid.data
 
-import com.example.firstandroid.data.model.LoggedInUser
+import com.example.firstAndroid.data.model.LoggedInUser
 
 /**
  * Class that requests authentication and user information from the remote data source and

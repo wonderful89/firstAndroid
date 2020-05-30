@@ -1,4 +1,4 @@
-package com.example.firstandroid.ui.login
+package com.example.firstAndroid.functions.ui.login
 
 /**
  * Authentication result : success (user details) or error message.

@@ -1,4 +1,4 @@
-package com.example.firstandroid
+package com.example.firstAndroid
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,11 +9,9 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.util.Log
-import com.example.firstandroid.ui.login.LoginActivity
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content2_main.*
-import java.lang.String
 
 class MainActivity : AppCompatActivity() {
 

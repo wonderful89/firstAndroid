@@ -1,4 +1,4 @@
-package com.example.firstandroid.ui.login
+package com.example.firstAndroid.functions.ui.login
 
 import android.app.Activity
 import androidx.lifecycle.Observer
@@ -15,7 +15,7 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 
-import com.example.firstandroid.R
+import com.example.firstAndroid.R
 
 class LoginActivity : AppCompatActivity() {
 
