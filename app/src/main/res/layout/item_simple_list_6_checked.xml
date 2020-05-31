@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/text1"
+    android:layout_width="match_parent"
+    android:layout_height="?android:attr/listPreferredItemHeightSmall"
+    android:layout_marginHorizontal="0dp"
+    android:drawableStart="@drawable/check_mark_0"
+
+    android:checkMarkTint="@color/colorAccent"
+    android:checkMarkTintMode="screen"
+    android:checked="true"
+    android:gravity="center_vertical"
+
+    android:paddingHorizontal="60dp"
+    android:textAppearance="?android:attr/textAppearanceListItemSmall" />
+
+    <!--文字居中-->
+    <!--android:textAlignment="center"-->
+
+    <!--自定义的复选框样式 左显示-->
+    <!--android:drawableStart="@drawable/check_mark_0"-->
+
+    <!--自定义的复选框样式 （默认位置）-->
+    <!--android:checkMark="@drawable/check_mark_0"-->
+
+    <!--这个属性不生效？-->
+    <!--    android:checkMarkTint="@color/colorAccent"-->
+    <!--    android:checkMark="?android:attr/textCheckMark"-->

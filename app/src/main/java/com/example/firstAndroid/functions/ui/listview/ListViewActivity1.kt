@@ -1,23 +1,114 @@
 package com.example.firstAndroid.functions.ui.listview
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
+import android.widget.ListView
 import android.widget.SimpleAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.example.firstAndroid.R
+import kotlinx.android.synthetic.main.activity_list_view_1.*
 import kotlinx.android.synthetic.main.activity_test_list.*
+import kotlinx.android.synthetic.main.activity_test_list.listView
 
 class ListViewActivity1 : AppCompatActivity() {
+    companion object{
+        const val tag = "ListViewActivity1"
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_view_1)
         title = "ListViewActivity1"
-        configSimple2()
+//        configSimple2()
+//        configSingleChoose()
+//        configMultiChoose()
+        configCheck()
     }
 
+    /// 配置check
+    private fun configCheck() {
+        val data = arrayOf(
+            "老师",
+            "学生",
+            "课桌",
+            "体育"
+        )
+        var originId = android.R.layout.simple_list_item_checked
+        val adapter = ArrayAdapter(this, R.layout.item_simple_list_6_checked, data)
+        listView.choiceMode = ListView.CHOICE_MODE_SINGLE;
+        listView.itemsCanFocus = true
+        listView.adapter = adapter
+        listView.setItemChecked(2, true)
+        btn.setOnClickListener {
+            Log.w(tag,"button click")
+        }
+
+        listView.setOnItemClickListener { _, _, position: Int, _: Long ->
+            Log.w(tag, "position  = $position")
+            Log.w(tag, "list view selected  = ${listView.checkedItemPositions}")
+        }
+    }
+
+    /// 配置多选
+    private fun configMultiChoose() {
+        val data = arrayOf(
+            "老师",
+            "学生",
+            "课桌",
+            "体育"
+        )
+        var originId = android.R.layout.simple_list_item_multiple_choice
+        val adapter = ArrayAdapter(this, R.layout.item_simple_list_5_multi_choose, data)
+        listView.choiceMode = ListView.CHOICE_MODE_MULTIPLE;
+        listView.itemsCanFocus = true
+        listView.adapter = adapter
+
+        listView.setOnItemClickListener { _, _, position: Int, _: Long ->
+            Log.w(tag, "position  = $position")
+            Log.w(tag, "list view selected  = ${listView.checkedItemPositions}")
+        }
+    }
+
+    /// 配置单选
+    private fun configSingleChoose() {
+        val data = arrayOf(
+            "老师",
+            "学生",
+            "课桌"
+        )
+        var originId = android.R.layout.simple_list_item_single_choice
+        val adapter = ArrayAdapter(this, R.layout.item_simple_list_4_single_choose, data)
+        listView.choiceMode = ListView.CHOICE_MODE_SINGLE;
+        listView.itemsCanFocus = true
+        listView.adapter = adapter
+
+        listView.setOnItemClickListener { _, _, position: Int, _: Long ->
+            Log.w(tag, "position  = $position")
+            Log.w(tag, "list view selected  = ${listView.checkedItemPosition}")
+        }
+    }
+
+    /// 3个textView的情况
+    private fun configSimple3() {
+        val data = arrayOf(
+            mapOf("title" to "title1", "desc" to "this is the desc1", "desc2" to "this is the desc1xxx"),
+            mapOf("title" to "title2", "desc" to "this is the desc2", "desc2" to "this is the desc1yyy"),
+            mapOf("title" to "title3", "desc" to "this is the desc3", "desc2" to "this is the desc1zzz")
+        )
+        val adapter = SimpleAdapter(
+            this,
+            data.toMutableList(),
+            R.layout.item_simple_list_2,
+            arrayOf("title", "desc", "desc2"),
+            intArrayOf(android.R.id.title, android.R.id.content, R.id.textViewContent1)
+        )
+        listView.adapter = adapter
+    }
+
+    /// 两个textView的情况
     private fun configSimple2() {
         val data = arrayOf(
-            mapOf("title" to "title1 are you dasf fdasjdf jdsafk asdlkfj aslkdf alksdfjalksf aslkfa sfjl", "desc" to "this is the desc1"),
+            mapOf("title" to "title1 are you 1 are you 1 are you 1 are you 1 are you 1 are you", "desc" to "this is the desc1"),
             mapOf("title" to "title2", "desc" to "this is the desc2"),
             mapOf("title" to "title3", "desc" to "this is the desc3")
         )
