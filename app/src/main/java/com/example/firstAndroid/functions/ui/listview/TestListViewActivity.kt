@@ -29,7 +29,7 @@ class TestListViewActivity : BaseActivity() {
         listView.setOnItemClickListener { _, _, position: Int, _: Long ->
             var intentClass: Class<AppCompatActivity>? = null
             intentClass = when (position) {
-                ListViewTest.Util.ordinal -> UITestListActivity().javaClass
+                ListViewTest.ListView1.ordinal -> ListViewActivity1().javaClass
                 else -> MainActivity().javaClass
             }
 
