@@ -5,13 +5,14 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import com.example.firstAndroid.base.BaseActivity
 import com.example.firstAndroid.functions.components.ComponentActivity
 import com.example.firstAndroid.functions.logic.LogicListActivity
 import com.example.firstAndroid.functions.ui.UITestListActivity
 import com.example.firstAndroid.functions.util.UtilTestActivity
 import kotlinx.android.synthetic.main.activity_test_list.*
 
-class TestListActivity : AppCompatActivity() {
+class TestListActivity : BaseActivity() {
     companion object {
         const val tag = "TestList"
     }
@@ -30,16 +31,16 @@ class TestListActivity : AppCompatActivity() {
             val selectedItem = adapterView.getItemAtPosition(position)
             Log.w(tag, "view = $view")
             Log.w(tag, "selectItem = $selectedItem")
-            var intentClass: Class<AppCompatActivity>? = null
-            intentClass = when (position) {
-                MainTest.UI.ordinal -> UITestListActivity().javaClass
-                MainTest.Logic.ordinal -> LogicListActivity().javaClass
-                MainTest.Util.ordinal -> UtilTestActivity().javaClass
-                MainTest.Component.ordinal -> ComponentActivity().javaClass
-                else -> MainActivity().javaClass
+            var intentActivity: AppCompatActivity? = null
+            intentActivity = when (position) {
+                MainTest.UI.ordinal -> UITestListActivity()
+                MainTest.Logic.ordinal -> LogicListActivity()
+                MainTest.Util.ordinal -> UtilTestActivity()
+                MainTest.Component.ordinal -> ComponentActivity()
+                else -> MainActivity()
             }
 
-            val intent = android.content.Intent(this, intentClass)
+            val intent = android.content.Intent(this, intentActivity.javaClass)
             startActivity(intent)
         }
     }

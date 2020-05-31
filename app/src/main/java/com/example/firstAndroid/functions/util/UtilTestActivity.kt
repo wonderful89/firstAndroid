@@ -5,9 +5,10 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import com.example.firstAndroid.R
 import com.example.firstAndroid.MainActivity
+import com.example.firstAndroid.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_test_list.*
 
-class UtilTestActivity : AppCompatActivity() {
+class UtilTestActivity : BaseActivity() {
     companion object{
         const val tag = "UtilTestList"
     }
