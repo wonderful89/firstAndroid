@@ -5,11 +5,11 @@ import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.SimpleAdapter
-import androidx.appcompat.app.AppCompatActivity
 import com.example.firstAndroid.R
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_list_view_1.*
-import kotlinx.android.synthetic.main.activity_test_list.*
 import kotlinx.android.synthetic.main.activity_test_list.listView
+
 
 class ListViewActivity1 : AppCompatActivity() {
     companion object{
@@ -23,6 +23,26 @@ class ListViewActivity1 : AppCompatActivity() {
 //        configSingleChoose()
 //        configMultiChoose()
         configCheck()
+//        configCustomItem()
+    }
+
+    private fun initData() : ArrayList<HashMap<String, Any>>{
+        var dataItems = ArrayList<HashMap<String, Any>>()
+        for (i in 0..19) {
+            val map = HashMap<String, Any>()
+            map["image"] = R.mipmap.ic_launcher //图标
+            map["title"] = "标题$i" //标题
+            map["content"] = "内容$i" //内容
+            dataItems.add(map)
+        }
+        return dataItems
+    }
+
+    ///
+    private fun configCustomItem() {
+        val arrayList = initData()
+        val adapter = CustomAdapter(this,arrayList)
+        listView.adapter = adapter
     }
 
     /// 配置check
