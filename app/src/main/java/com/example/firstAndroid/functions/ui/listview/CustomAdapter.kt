@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.*
 import com.example.firstAndroid.R
 
-
 class CustomAdapter(
     private val context: Context,
     private val dataItems: ArrayList<HashMap<String, Any>>
@@ -26,9 +25,9 @@ class CustomAdapter(
     override fun getView(
         position: Int,
         convertView: View?,
-        parent: ViewGroup
+        parent: ViewGroup?
     ): View {
-        var convertView2 = convertView
+        var convertView2: View? = convertView
         val holder: ViewHolder
         if (null == convertView2) {
             convertView2 = mInflater.inflate(R.layout.item_simple_list_7_custom_view, null)

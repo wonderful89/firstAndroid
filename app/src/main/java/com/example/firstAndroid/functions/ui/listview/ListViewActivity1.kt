@@ -19,15 +19,16 @@ class ListViewActivity1 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_view_1)
         title = "ListViewActivity1"
-//        configSimple2()
+//        configSimple()
+        configSimple2()
 //        configSingleChoose()
 //        configMultiChoose()
 //        configCheck()
-        configCustomItem()
+//        configCustomItem()
     }
 
     private fun initData() : ArrayList<HashMap<String, Any>>{
-        var dataItems = ArrayList<HashMap<String, Any>>()
+        val dataItems = ArrayList<HashMap<String, Any>>()
         for (i in 0..19) {
             val map = HashMap<String, Any>()
             map["image"] = R.mipmap.ic_launcher //图标
