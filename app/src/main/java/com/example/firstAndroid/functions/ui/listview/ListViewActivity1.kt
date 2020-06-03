@@ -22,8 +22,8 @@ class ListViewActivity1 : AppCompatActivity() {
 //        configSimple2()
 //        configSingleChoose()
 //        configMultiChoose()
-        configCheck()
-//        configCustomItem()
+//        configCheck()
+        configCustomItem()
     }
 
     private fun initData() : ArrayList<HashMap<String, Any>>{
