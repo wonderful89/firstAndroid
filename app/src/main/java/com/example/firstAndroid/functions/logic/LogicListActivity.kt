@@ -6,7 +6,6 @@ import android.widget.ArrayAdapter
 import com.example.firstAndroid.MainActivity
 import com.example.firstAndroid.R
 import com.example.firstAndroid.base.BaseActivity
-import com.example.firstAndroid.functions.ui.UIMainTest
 import com.example.firstAndroid.functions.ui.UITestListActivity
 import com.example.firstAndroid.functions.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_test_list.*

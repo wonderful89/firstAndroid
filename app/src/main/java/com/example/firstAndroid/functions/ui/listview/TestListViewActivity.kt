@@ -7,15 +7,15 @@ import android.widget.BaseAdapter
 import com.example.firstAndroid.MainActivity
 import com.example.firstAndroid.R
 import com.example.firstAndroid.base.BaseActivity
-import com.example.firstAndroid.functions.ui.UIMainTest
 import com.example.firstAndroid.functions.ui.UITestListActivity
 import com.example.firstAndroid.functions.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_test_list.*
 
 class TestListViewActivity : BaseActivity() {
-    companion object{
+    companion object {
         const val tag = "ListViewTest"
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test_list)

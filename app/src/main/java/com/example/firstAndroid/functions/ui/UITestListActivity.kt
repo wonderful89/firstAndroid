@@ -21,7 +21,7 @@ class UITestListActivity : BaseActivity() {
         setContentView(R.layout.activity_test_list)
 //        title = this.javaClass.simpleName //"UI测试"
 
-        val lists = UIMainTest.values().map { item -> item.title }
+        val lists = ListViewTest.values().map { item -> item.title }
         val arrayAdapter2 = ArrayAdapter(this, R.layout.item_simple_list_0, lists)
         listView.adapter = arrayAdapter2
         listView.dividerHeight = 2
@@ -30,8 +30,9 @@ class UITestListActivity : BaseActivity() {
         listView.setOnItemClickListener { _, _, position: Int, _: Long ->
             var intentActivity: AppCompatActivity? = null
             intentActivity = when (position) {
-                UIMainTest.ListView.ordinal -> TestListViewActivity()
-                UIMainTest.Login.ordinal -> LoginActivity()
+                ListViewTest.TestView1.ordinal -> UITestView1Activity()
+                ListViewTest.TouchMe.ordinal -> UITouchMeActivity()
+                ListViewTest.Login.ordinal -> LoginActivity()
                 else -> MainActivity()
             }
 
