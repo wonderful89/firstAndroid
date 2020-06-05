@@ -5,6 +5,7 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import android.graphics.Typeface
+import android.util.Log
 
 /**
  * TODO: document your custom view class.
@@ -33,5 +34,10 @@ class DotView(
             paint.color = dot.color
             canvas?.drawCircle(dot.x, dot.y, dot.diameter.toFloat(), paint)
         }
+    }
+
+    override fun onDetachedFromWindow() {
+        Log.w("DotView", "onDetachedFromWindow")
+        super.onDetachedFromWindow()
     }
 }

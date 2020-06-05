@@ -2,6 +2,7 @@ package com.example.firstAndroid.functions.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import com.example.firstAndroid.MainActivity
 import com.example.firstAndroid.R
@@ -39,5 +40,29 @@ class UITestListActivity : BaseActivity() {
             val intent = android.content.Intent(this, intentActivity.javaClass)
             startActivity(intent)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+    }
+
+    override fun onPause() {
+        super.onPause()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onStop() {
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 }

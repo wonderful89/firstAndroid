@@ -48,6 +48,8 @@ class Dots {
     private fun notifyListener() {
         dotsChangeListener?.onDotsChange(this)
     }
+
+
 }
 
 class UITouchMeActivity : AppCompatActivity(), Dots.DotsChangeListener {
@@ -88,6 +90,9 @@ class UITouchMeActivity : AppCompatActivity(), Dots.DotsChangeListener {
             } catch (e: Exception) {
                 Log.w("exception", "$e")
             }
+
+            val d = Random.nextInt(0, 0).toFloat()
+
             val x = Random.nextInt(0, width).toFloat()
             val y = Random.nextInt(0, height).toFloat()
             dots.addDot(x, y, Color.RED, 10)
@@ -98,5 +103,30 @@ class UITouchMeActivity : AppCompatActivity(), Dots.DotsChangeListener {
             val y = Random.nextInt(0, height).toFloat()
             dots.addDot(x, y, Color.WHITE, 10)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+    }
+
+    override fun onPause() {
+        super.onPause()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onStop() {
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        Log.w("UITouchMeActivity", "onDestroy")
+        super.onDestroy()
     }
 }

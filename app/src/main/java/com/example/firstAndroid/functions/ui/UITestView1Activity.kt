@@ -93,4 +93,9 @@ class UITestView1Activity : AppCompatActivity() {
         ll2.addView(button3)
 
     }
+
+    override fun onDestroy() {
+        Log.w(tag, "onDestroy")
+        super.onDestroy()
+    }
 }
