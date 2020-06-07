@@ -1,4 +1,4 @@
-package com.example.firstAndroid.functions.ui
+package com.example.firstAndroid.functions.ui.touchMe
 
 import android.content.Context
 import android.graphics.*

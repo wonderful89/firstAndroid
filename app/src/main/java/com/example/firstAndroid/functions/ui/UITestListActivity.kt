@@ -2,14 +2,12 @@ package com.example.firstAndroid.functions.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.ArrayAdapter
 import com.example.firstAndroid.MainActivity
 import com.example.firstAndroid.R
-import com.example.firstAndroid.TestListActivity
 import com.example.firstAndroid.base.BaseActivity
-import com.example.firstAndroid.functions.ui.listview.TestListViewActivity
 import com.example.firstAndroid.functions.ui.login.LoginActivity
+import com.example.firstAndroid.functions.ui.touchMe.UITouchMeActivity
 import kotlinx.android.synthetic.main.activity_test_list.*
 
 class UITestListActivity : BaseActivity() {

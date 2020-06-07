@@ -1,4 +1,4 @@
-package com.example.firstAndroid.functions.ui
+package com.example.firstAndroid.functions.ui.touchMe
 
 import android.graphics.Color
 import android.os.Bundle
@@ -8,65 +8,64 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.firstAndroid.R
+import com.example.firstAndroid.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_u_i_touch_me.*
-import java.util.*
 import kotlin.random.Random
 
-class Dot(var x: Float, var y: Float, var color: Int, var diameter: Int) {}
-
-class Dots {
-    interface DotsChangeListener {
-        fun onDotsChange(dots: Dots);
+@ExperimentalUnsignedTypes
+class UITouchMeActivity : BaseActivity() {
+    private var dotsModel = Dots()
+    private val mDotView: DotView by lazy {
+        val view = DotView(
+            this,
+            dots = dotsModel
+        )
+        view.setBackgroundColor(Color.BLUE)
+        return@lazy view;
     }
 
-    private var dots = LinkedList<Dot>()
-    private val safeDots = Collections.unmodifiableList(dots)
-    private var dotsChangeListener: DotsChangeListener? = null
-
-    fun setDotsChangeListener(listen: DotsChangeListener) {
-        dotsChangeListener = listen
+    val dotsChangeHandler = object : Dots.DotsChangeListener {
+        override fun onDotsChange(dots: Dots) {
+            mDotView.invalidate()
+        }
     }
 
-    fun getLastDot(): Dot? {
-        return dots.last
-    }
+//    override fun onDotsChange(dots: Dots) {
+//        mDotView.invalidate()
+//    }
 
-    fun getDots(): MutableList<Dot> {
-        return Collections.unmodifiableList(dots)
-    }
-
-    fun addDot(x: Float, y: Float, color: Int, diameter: Int) {
-        dots.add(Dot(x, y, color, diameter))
-        notifyListener()
-    }
-
-    fun clearDots() {
-        dots.clear()
-        notifyListener()
-    }
-
-    private fun notifyListener() {
-        dotsChangeListener?.onDotsChange(this)
-    }
-
-
-}
-
-class UITouchMeActivity : AppCompatActivity(), Dots.DotsChangeListener {
-    private var dots = Dots()
-    private var mDotView: DotView? = null
-
-    override fun onDotsChange(dots: Dots) {
-        mDotView?.invalidate()
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_u_i_touch_me)
-        dots.addDot(10.toFloat(), 10.toFloat(), Color.RED, 10)
-        mDotView = DotView(this, dots = dots)
-        val dotView = mDotView!!
-        dotView.setBackgroundColor(Color.BLUE)
-        dots.setDotsChangeListener(this)
+        dotsModel.addDot(10.toFloat(), 10.toFloat(), Color.RED, 10)
+
+        // 第1种设置方法
+//        dotsModel.setDotsChangeListener(dotsChangeHandler)
+        // 第2种设置方法
+//        dotsModel.setDotsChangeListener2 {
+//            mDotView.invalidate()
+//        }
+        // 第3种设置方法
+//        dotsModel.setDotsChangeListener(this)
+
+//        // 第4种设置方法
+//        dotsModel.setDotsChangeListener(object: Dots.DotsChangeListener{
+//            override fun onDotsChange(dots: Dots) {
+//                mDotView.invalidate()
+//            }
+//        })
+
+        // 第5种设置方法
+//        dotsModel.onDotsChanged {
+//            mDotView.invalidate()
+//        }
+
+        // 第6种设置方法
+        dotsModel.setListeners {
+            onDotsChangeXX {
+                mDotView.invalidate()
+            }
+        }
 
         val displayMetrics = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(displayMetrics)
@@ -78,11 +77,8 @@ class UITouchMeActivity : AppCompatActivity(), Dots.DotsChangeListener {
             height, // ViewGroup.LayoutParams.WRAP_CONTENT
             0.0F
         )
-//        val layoutParam = ViewGroup.MarginLayoutParams(200,200)
-//        layoutParam.marginStart = 0
-//        layoutParam.marginEnd = 0
-        dotView.layoutParams = containerParams
-        container.addView(dotView)
+        mDotView.layoutParams = containerParams
+        container.addView(mDotView)
 
         button.setOnClickListener {
             try {
@@ -91,17 +87,15 @@ class UITouchMeActivity : AppCompatActivity(), Dots.DotsChangeListener {
                 Log.w("exception", "$e")
             }
 
-            val d = Random.nextInt(0, 0).toFloat()
-
             val x = Random.nextInt(0, width).toFloat()
             val y = Random.nextInt(0, height).toFloat()
-            dots.addDot(x, y, Color.RED, 10)
+            dotsModel.addDot(x, y, Color.RED, 10)
         }
 
         button2.setOnClickListener {
             val x = Random.nextInt(0, width).toFloat()
             val y = Random.nextInt(0, height).toFloat()
-            dots.addDot(x, y, Color.WHITE, 10)
+            dotsModel.addDot(x, y, Color.WHITE, 10)
         }
     }
 

@@ -13,18 +13,26 @@ import kotlin.random.Random
 
 class UITestView1Activity : AppCompatActivity() {
 
-    companion object{
+    companion object {
         val tag = "TestView1"
     }
-    // 这里该如何初始化
-    private var rootPrivate: LinearLayout? = null
+
+    // 初始化1
+//    private lateinit var rootPrivate: LinearLayout;
+    private val rootPrivate by lazy {
+        Log.w(tag,"init rootPrivate")
+        LinearLayout(this)
+    }
+
+    private val aaa: Int by lazy {
+        1 + 2;
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.w(tag, "onCreate")
 //        setContentView(R.layout.activity_view_test_1)
-
-        rootPrivate = LinearLayout(this)
-        val root = rootPrivate!!
+        val root = rootPrivate
         val containerParams = LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -72,7 +80,7 @@ class UITestView1Activity : AppCompatActivity() {
         button1.layoutParams = widgetParams
         button1.setOnClickListener {
             Log.w(tag, "button click")
-            tb.setText(Random.nextInt(200,1000).toString())
+            tb.setText(Random.nextInt(200, 1000).toString())
         }
         ll2.addView(button1)
 
@@ -83,7 +91,7 @@ class UITestView1Activity : AppCompatActivity() {
         ll2.addView(button2)
         button2.setOnClickListener {
             Log.w(tag, "button2 click")
-            tb2.setText(Random.nextInt(0,200).toString())
+            tb2.setText(Random.nextInt(0, 200).toString())
         }
 
         val button3 = Button(this)
