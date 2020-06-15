@@ -4,9 +4,12 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
+    dataBinding.enabled = true
     defaultConfig {
         applicationId "com.example.firstAndroid"
         minSdkVersion 21
@@ -19,6 +22,36 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "default"
+
+    productFlavors {
+
+        finalProduction {
+            dimension "default"
+            applicationId "me.mladenrakonjac.modernandroidapp"
+            resValue "string", "app_name", "App P"
+        }
+
+        demoProduction {
+            dimension "default"
+            applicationId "me.mladenrakonjac.modernandroidapp.demoproduction"
+            resValue "string", "app_name", "App Demo P"
+        }
+
+        demoTesting {
+            dimension "default"
+            applicationId "me.mladenrakonjac.modernandroidapp.demotesting"
+            resValue "string", "app_name", "App Demo T"
+        }
+
+
+        mock {
+            dimension "default"
+            applicationId "me.mladenrakonjac.modernandroidapp.mock"
+            resValue "string", "app_name", "App Mock"
         }
     }
 }
@@ -36,4 +69,5 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     implementation "org.jetbrains.anko:anko-commons:0.10.5"
+    kapt "com.android.databinding:compiler:3.5.3"
 }
