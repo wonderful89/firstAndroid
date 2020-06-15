@@ -6,14 +6,19 @@ import android.widget.ArrayAdapter
 import com.example.firstAndroid.MainActivity
 import com.example.firstAndroid.R
 import com.example.firstAndroid.base.BaseActivity
+import com.example.firstAndroid.functions.ui.animation.UIAnimate1Activity
+import com.example.firstAndroid.functions.ui.animation.UIAnimate2Activity
 import com.example.firstAndroid.functions.ui.login.LoginActivity
 import com.example.firstAndroid.functions.ui.touchMe.UITouchMeActivity
 import kotlinx.android.synthetic.main.activity_test_list.*
+import java.util.logging.Logger
 
 class UITestListActivity : BaseActivity() {
 
     companion object{
         const val tag = "UITestList"
+//        val log: Logger = Logger.getLogger(this.javaClass.name)
+        val log: Logger = Logger.getLogger(this::class.java.name)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +36,8 @@ class UITestListActivity : BaseActivity() {
             intentActivity = when (position) {
                 ListViewTest.TestView1.ordinal -> UITestView1Activity()
                 ListViewTest.TouchMe.ordinal -> UITouchMeActivity()
+                ListViewTest.Animate1.ordinal -> UIAnimate1Activity()
+                ListViewTest.Animate2.ordinal -> UIAnimate2Activity()
                 ListViewTest.Login.ordinal -> LoginActivity()
                 else -> MainActivity()
             }
@@ -42,25 +49,31 @@ class UITestListActivity : BaseActivity() {
 
     override fun onStart() {
         super.onStart()
+        log.info("onStart")
     }
 
     override fun onPause() {
         super.onPause()
+        log.info("onPause")
     }
 
     override fun onRestart() {
         super.onRestart()
+        log.info("onRestart")
     }
 
     override fun onResume() {
         super.onResume()
+        log.info("onResume")
     }
 
     override fun onStop() {
         super.onStop()
+        log.info("onStop")
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        log.info("onDestroy")
     }
 }

@@ -9,17 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".functions.ui.animation.UIAnimate2Activity"></activity>
+        <activity android:name=".functions.ui.animation.UIAnimate1Activity" />
         <activity android:name=".functions.ui.touchMe.UITouchMeActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-        <activity android:name=".functions.ui.UITestView1Activity">
-        </activity>
-        <activity android:name=".functions.ui.listview.ListViewActivity1">
 
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
+        <activity android:name=".functions.ui.UITestView1Activity" />
+        <activity android:name=".functions.ui.listview.ListViewActivity1" />
         <activity android:name=".base.BaseActivity" />
         <activity android:name=".functions.ui.listview.TestListViewActivity" />
         <activity android:name=".functions.util.UtilTestActivity" />
@@ -31,9 +31,10 @@
             android:label="@string/main_name"
             android:theme="@style/AppTheme">
 
-<!--            该Activity是该应用的启动入口页面，它会被储存在系统的launcher列表中-->
+            <!-- 该Activity是该应用的启动入口页面，它会被储存在系统的launcher列表中 -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 

@@ -9,5 +9,7 @@ package com.example.firstAndroid.functions.ui
 enum class ListViewTest(val title: String, val content: String = "") {
     TouchMe("点击随机发射点"),
     TestView1("基础View布局测试"),
+    Animate1("测试动画1"),
+    Animate2("测试动画2,心跳动画"),
     Login("登录");
 }

@@ -9,12 +9,14 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import java.util.logging.Logger
 import kotlin.random.Random
 
 class UITestView1Activity : AppCompatActivity() {
 
     companion object {
         val tag = "TestView1"
+        val log: Logger = Logger.getLogger(this::class.java.name)
     }
 
     // 初始化1
@@ -29,6 +31,7 @@ class UITestView1Activity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        log.info("onCreate")
         super.onCreate(savedInstanceState)
         Log.w(tag, "onCreate")
 //        setContentView(R.layout.activity_view_test_1)

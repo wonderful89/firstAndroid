@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<scale xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fromXScale="0.0"
+    android:toXScale="2.0"
+    android:fromYScale="0.0"
+    android:toYScale="2.0"
+    android:pivotX="50"
+    android:pivotY="50"
+    android:duration="3000">
+</scale>
+
+<!--    相对于对象的顶部边缘的像素-->
+<!--    android:pivotX="50"-->
+<!--    android:pivotY="50"-->
+
+<!--    或相对于物体的顶部边缘的百分比 (例如 “50%”)-->
+<!--    android:pivotX="50%"-->
+<!--    android:pivotY="50%"-->
+
+<!--    对于父容器的顶部边缘的百分比 (例如 “50%p”).-->
+<!--    android:pivotX="50%p"-->
+<!--    android:pivotY="50%p"-->
