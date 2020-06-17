@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".functions.ui.anko1.Anko1Activity"></activity>
+        <activity android:name=".functions.ui.anko.Anko2Activity"></activity>
+        <activity android:name=".functions.ui.anko.Anko1Activity" />
         <activity android:name=".functions.ui.animation.UIAnimate2Activity" />
         <activity android:name=".functions.ui.animation.UIAnimate1Activity" />
         <activity android:name=".functions.ui.touchMe.UITouchMeActivity">

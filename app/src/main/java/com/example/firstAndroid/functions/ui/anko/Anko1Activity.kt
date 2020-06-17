@@ -1,4 +1,4 @@
-package com.example.firstAndroid.functions.ui.anko1
+package com.example.firstAndroid.functions.ui.anko
 
 import android.content.Context
 import android.graphics.Color
@@ -6,14 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.AttributeSet
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewManager
-import androidx.annotation.Nullable
-import androidx.constraintlayout.widget.ConstraintLayout
 import org.jetbrains.anko.*
 import org.jetbrains.anko.custom.ankoView
 import java.util.logging.Logger
