@@ -8,6 +8,7 @@ import com.example.firstAndroid.R
 import com.example.firstAndroid.base.BaseActivity
 import com.example.firstAndroid.functions.ui.animation.UIAnimate1Activity
 import com.example.firstAndroid.functions.ui.animation.UIAnimate2Activity
+import com.example.firstAndroid.functions.ui.anko1.Anko1Activity
 import com.example.firstAndroid.functions.ui.login.LoginActivity
 import com.example.firstAndroid.functions.ui.touchMe.UITouchMeActivity
 import kotlinx.android.synthetic.main.activity_test_list.*
@@ -38,6 +39,7 @@ class UITestListActivity : BaseActivity() {
                 ListViewTest.TouchMe.ordinal -> UITouchMeActivity()
                 ListViewTest.Animate1.ordinal -> UIAnimate1Activity()
                 ListViewTest.Animate2.ordinal -> UIAnimate2Activity()
+                ListViewTest.AnKoTest1.ordinal -> Anko1Activity()
                 ListViewTest.Login.ordinal -> LoginActivity()
                 else -> MainActivity()
             }
