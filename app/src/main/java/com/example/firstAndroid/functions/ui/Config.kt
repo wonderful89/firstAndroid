@@ -13,5 +13,6 @@ enum class ListViewTest(val title: String, val content: String = "") {
     Animate2("测试动画2,心跳动画"),
     AnKoTest1("测试anKo"),
     AnKoTest2("测试anKo2"),
+    DaggerTest1("Dagger基本使用"),
     Login("登录");
 }
