@@ -11,7 +11,7 @@ android {
     buildToolsVersion "29.0.2"
     dataBinding.enabled = true
     defaultConfig {
-        applicationId "com.example.firstAndroid"
+//        applicationId "com.example.firstAndroid"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
@@ -32,30 +32,31 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    /// 不同渠道包
     productFlavors {
 
         finalProduction {
             dimension "default"
-            applicationId "me.mladenrakonjac.modernandroidapp"
+            applicationId "com.example.channel1"
             resValue "string", "app_name", "App P"
         }
 
         demoProduction {
             dimension "default"
-            applicationId "me.mladenrakonjac.modernandroidapp.demoproduction"
+            applicationId "com.example.channelDemo"
             resValue "string", "app_name", "App Demo P"
         }
 
         demoTesting {
             dimension "default"
-            applicationId "me.mladenrakonjac.modernandroidapp.demotesting"
+            applicationId "com.example.channelTest"
             resValue "string", "app_name", "App Demo T"
         }
 
 
         mock {
             dimension "default"
-            applicationId "me.mladenrakonjac.modernandroidapp.mock"
+            applicationId "com.example.channelMock"
             resValue "string", "app_name", "App Mock"
         }
     }
@@ -80,4 +81,8 @@ dependencies {
     implementation 'com.google.dagger:dagger:2.20'
     compileOnly 'javax.annotation:javax.annotation-api:1.2'
     kapt "com.android.databinding:compiler:3.5.3"
+
+    // 推荐集成方式， 其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.0.0
+    implementation 'com.tencent.bugly:crashreport_upgrade:latest.release'
+    implementation 'com.tencent.bugly:nativecrashreport:3.7.3'
 }

@@ -52,6 +52,9 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
+            Log.d("tag", "message")
+            val shoppingList = mutableListOf("catfish", "water", "tulips", "blue paint")
+            print(shoppingList[32])
         }
 
 
