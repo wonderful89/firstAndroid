@@ -1,0 +1,118 @@
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" /
+<style>
+</style>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script>
+
+    </script>
+</head>
+
+<body>
+<div class="bg">
+    <div>this is the debug page.</div>
+    <div onclick="showNativeToast()" style="background:grey;height: 64px;">showNativeToast</div>
+    <div onclick="sendOtherMessage()" style="background:lightgray;height: 64px;">other</div>
+    <div onclick="showNativeLoading()" style="background:grey;height: 64px;">showNativeLoading</div>
+    <div onclick="getData()" style="background:lightgray;height: 64px;">getData</div>
+</div>
+</body>
+
+<script src="https://cdn.bootcss.com/vConsole/3.3.4/vconsole.min.js"></script>
+<script>
+  var vConsole = new VConsole();
+  console.log('VConsole init');
+</script>
+
+<script>
+    function _realHandleNativeMessage(message){
+        if (message.method === 'alert') {
+            alert(message.text);
+            mylog('alert---');
+            mylog(message.text);
+            return true;
+        } else if (message.method === 'getDataCallback') {
+            mylog('in getDataCallback');
+            return true;
+        } else {
+            return 'no such handle method in webview';
+        }
+    }
+
+    function mylog (str){
+        console.log(str);
+    }
+
+    window.handleNativeMessage = function (message){
+        mylog("handleNativeMessage");
+        mylog(message);
+        try {
+            // 内部已经处理过了 
+            return _realHandleNativeMessage(message);
+        } catch(e) {
+            mylog("发生异常");
+            mylog(e);
+        }
+    }
+
+    function _sendMessageToTCR(params){
+        if (window.TCR == undefined){
+            console.log("TCR is undefined");
+            return;
+        }
+        var res = TCR.postMessage(JSON.stringify(params));
+        mylog('postMessage res = ');
+        mylog(res);
+    }
+</script>
+
+<script>
+    
+    function showNativeToast(){
+        mylog("showNativeToast");
+        var message = {
+            method: 'showToast',
+            text: 'toast from webview'
+        }
+        _sendMessageToTCR(message);
+        bridgeName.showToast("toast from webView");
+    }
+
+    function printLog(str){
+        mylog("printLog", str);
+    }
+
+    function sendOtherMessage(){
+        var message = {
+            method: 'other',
+            text: 'loading from webview'
+        }
+        _sendMessageToTCR(message);
+    }
+
+    function showNativeLoading(){
+        mylog("showNativeLoading");
+        var message = {
+            method: 'showLoading',
+            text: 'loading from webview'
+        }
+        _sendMessageToTCR(message);
+    }
+
+    function getData(){
+        mylog("getData");
+        var message = {
+            method: 'getData',
+            callback: 'getDataCallback',
+            text: 'loading from webview'
+        }
+        _sendMessageToTCR(message);
+    }
+    
+</script>
+
+</html>

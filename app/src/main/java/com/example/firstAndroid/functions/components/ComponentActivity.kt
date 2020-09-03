@@ -6,6 +6,7 @@ import android.widget.ArrayAdapter
 import com.example.firstAndroid.MainActivity
 import com.example.firstAndroid.R
 import com.example.firstAndroid.base.BaseActivity
+import com.example.firstAndroid.functions.logic.LogicTest
 import kotlinx.android.synthetic.main.activity_test_list.*
 
 class ComponentActivity : BaseActivity() {
@@ -25,6 +26,8 @@ class ComponentActivity : BaseActivity() {
         listView.setOnItemClickListener { _, _, position: Int, _: Long ->
             var intentClass: Class<AppCompatActivity>? = null
             intentClass = when (position) {
+                ComponentTest.WebViewOrigin.ordinal -> WebViewOriginActivity().javaClass
+                ComponentTest.WebViewX5.ordinal -> WebViewX5Activity().javaClass
                 else -> MainActivity().javaClass
             }
 

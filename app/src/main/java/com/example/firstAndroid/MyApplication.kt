@@ -8,6 +8,8 @@ import com.tencent.bugly.beta.Beta
 import com.tencent.bugly.beta.download.DownloadListener
 import com.tencent.bugly.beta.download.DownloadTask
 import com.tencent.bugly.beta.upgrade.UpgradeStateListener
+import com.tencent.smtt.sdk.QbSdk
+import com.tencent.smtt.sdk.QbSdk.PreInitCallback
 
 class MyApplication : Application() {
 
@@ -21,9 +23,11 @@ class MyApplication : Application() {
         super.onCreate()
         Log.d(tag, "onCreate")
         initBugly()
+        initX5Kit()
     }
 
     private fun initBugly(){
+        Log.d(tag, "初始化bugLy")
         /**** Beta高级设置*****/
         /**
          * true表示app启动自动初始化升级模块；
@@ -285,6 +289,25 @@ class MyApplication : Application() {
         )
     }
 
+    private fun initX5Kit() {
+        Log.d(tag, "初始化X5Kit")
+        //非wifi情况下，主动下载x5内核
+        QbSdk.setDownloadWithoutWifi(true)
+        //搜集本地tbs内核信息并上报服务器，服务器返回结果决定使用哪个内核。
+        val cb: PreInitCallback = object : PreInitCallback {
+            override fun onViewInitFinished(arg0: Boolean) {
+                //x5內核初始化完成的回调，为true表示x5内核加载成功，否则表示x5内核加载失败，会自动切换到系统内核。
+                Log.d(tag,"开启TBS===X5加速成功")
+            }
+
+            override fun onCoreInitFinished() {
+                Log.d(tag, "开启TBS===X5加速失败")
+            }
+        }
+        //x5内核初始化接口
+        //x5内核初始化接口
+        QbSdk.initX5Environment(applicationContext, cb)
+    }
     override fun onTerminate() {
         super.onTerminate()
     }

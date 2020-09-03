@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.firstAndroid">
-
-    <!--bugly升级：必须的权限配置-->
+    <!-- bugly升级：必须的权限配置 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <!--保存资源到SD卡-->
-    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:name=".MyApplication"
@@ -17,7 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".functions.ui.dagger.Dagger2Activity"></activity>
+        <activity android:name=".functions.components.WebViewX5Activity"></activity>
+        <activity android:name=".functions.components.WebViewOriginActivity" />
+        <activity android:name=".functions.ui.dagger.Dagger2Activity" />
         <activity android:name=".functions.ui.dagger.Dagger1Activity" />
         <activity android:name=".functions.ui.anko.Anko2Activity" />
         <activity android:name=".functions.ui.anko.Anko1Activity" />
@@ -84,15 +85,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!--bugly升级：必须配置-->
+        </activity> <!-- bugly升级：必须配置 -->
         <activity
             android:name="com.tencent.bugly.beta.ui.BetaActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale"
-            android:theme="@android:style/Theme.Translucent"/>
-
-        <!-- bugly升级：必须配置 fileProvider， 注意： android:authorities="${applicationId}.fileProvider" 不要直接copy，设置为你的包名.fileProvider-->
+            android:theme="@android:style/Theme.Translucent" /> <!-- bugly升级：必须配置 fileProvider， 注意： android:authorities="${applicationId}.fileProvider" 不要直接copy，设置为你的包名.fileProvider -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.firstAndroid.fileProvider2"
@@ -100,8 +97,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
-
+                android:resource="@xml/provider_paths" />
         </provider>
     </application>
 
