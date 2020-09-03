@@ -35,7 +35,7 @@
         android:layout_width="120dp"
         android:layout_height="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/button"
+        app:layout_constraintLeft_toRightOf="@id/buttonX5_1"
         android:layout_gravity="center_horizontal"
         android:text="调用 Native2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
