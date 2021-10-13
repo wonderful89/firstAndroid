@@ -3,6 +3,7 @@ package com.example.firstAndroid.functions.logic
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import com.alibaba.android.arouter.launcher.ARouter
 import com.example.firstAndroid.MainActivity
 import com.example.firstAndroid.R
 import com.example.firstAndroid.base.BaseActivity
@@ -25,15 +26,16 @@ class LogicListActivity : BaseActivity() {
         listView.setSelector(R.drawable.listview_selector_0)
 
         listView.setOnItemClickListener { _, _, position: Int, _: Long ->
-            var intentClass: Class<AppCompatActivity>? = null
-            intentClass = when (position) {
-                LogicTest.UI.ordinal -> UITestListActivity().javaClass
-                LogicTest.Login.ordinal -> LoginActivity().javaClass
-                else -> MainActivity().javaClass
+            var intentName: String? = null
+            intentName = when (position) {
+                LogicTest.UI.ordinal -> "/ui/animation1"
+                LogicTest.Login.ordinal -> "/ui/animation2"
+                else -> "/ui/animation2"
             }
 
-            val intent = android.content.Intent(this, intentClass)
-            startActivity(intent)
+            ARouter.getInstance().build(intentName).navigation()
+//            val intent = android.content.Intent(this, intentClass)
+//            startActivity(intent)
         }
     }
 }

@@ -5,7 +5,19 @@
       <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
     </configurations>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../../../../../layout/custom_preview.xml" value="0.47760416666666666" />
+        <entry key="app/src/main/res/drawable/heart_beat_anim.xml" value="0.5098958333333333" />
+        <entry key="app/src/main/res/drawable/listview_selector_0.xml" value="0.5098958333333333" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.3523550724637681" />
+        <entry key="app/src/main/res/layout/activity_test_list.xml" value="0.24012158054711247" />
+        <entry key="app/src/main/res/layout/activity_u_i_animate2.xml" value="0.24012158054711247" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
