@@ -46,7 +46,7 @@ class MyApplication : Application() {
     }
 
     private fun initBugly(){
-        Log.d(tag, "初始化bugLy")
+        Log.d(tag, "初始化bugLy X")
         /**** Beta高级设置*****/
         /**
          * true表示app启动自动初始化升级模块；
