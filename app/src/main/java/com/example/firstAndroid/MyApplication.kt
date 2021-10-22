@@ -11,17 +11,24 @@ import com.tencent.bugly.beta.upgrade.UpgradeStateListener
 import com.tencent.smtt.sdk.QbSdk
 import com.tencent.smtt.sdk.QbSdk.PreInitCallback
 import com.alibaba.android.arouter.launcher.ARouter
+import com.example.firstAndroid.functions.ui.dagger.DaggerAppComponent
+import dagger.android.AndroidInjector
+import dagger.android.support.DaggerApplication
 
-class MyApplication : Application() {
+class MyApplication : DaggerApplication() {
 
     companion object{
         const val tag = "MyApplication"
         const val buglyAppId = "d661688be4"
         const val buglyAppChannel = "DEBUG1"
+
+        @JvmStatic // 全局的静态Application
+        var instance: MyApplication? = null
     }
 
     override fun onCreate() {
         super.onCreate()
+        instance = this
         Log.d(tag, "onCreate")
         initSync()
         Thread {
@@ -329,6 +336,11 @@ class MyApplication : Application() {
     }
     override fun onTerminate() {
         super.onTerminate()
+    }
+
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+        Log.d("$tag", "注入代码")
+        return DaggerFirstAndroidAppComponent.builder().application(this).build()
     }
 
     override fun onTrimMemory(level: Int) {

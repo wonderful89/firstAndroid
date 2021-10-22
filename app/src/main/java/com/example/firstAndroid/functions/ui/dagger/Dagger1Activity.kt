@@ -3,8 +3,10 @@ package com.example.firstAndroid.functions.ui.dagger
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.alibaba.android.arouter.launcher.ARouter
 import com.example.firstAndroid.R
 import dagger.Component
+import kotlinx.android.synthetic.main.activity_dagger1.*
 import javax.inject.Inject
 
 /**
@@ -36,6 +38,11 @@ class Dagger1Activity : AppCompatActivity() {
         setContentView(R.layout.activity_dagger1)
 //        testMagicBox()
 //        testMyMagicBox()
+
+        button3.setOnClickListener(){
+            ARouter.getInstance().build("/task/test").navigation()
+//            ARouter.getInstance().build("/ui/animation1").navigation()
+        }
 
         val show = Shoe()
         show.description()
