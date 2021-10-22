@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:sharedUserId="android.uid.test1"
     package="com.example.firstAndroid">
     <!-- bugly升级：必须的权限配置 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -92,7 +93,7 @@
             android:theme="@android:style/Theme.Translucent" /> <!-- bugly升级：必须配置 fileProvider， 注意： android:authorities="${applicationId}.fileProvider" 不要直接copy，设置为你的包名.fileProvider -->
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.firstAndroid.fileProvider2"
+            android:authorities="com.example.firstAndroid.fileProvider3"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

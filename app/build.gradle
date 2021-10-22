@@ -54,7 +54,7 @@ android {
 
         demoProduction {
             dimension "default"
-            applicationId "com.example.channelDemo"
+            applicationId "com.example.channelDemo2"
             resValue "string", "app_name", "App Demo P"
         }
 
