@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         println("onCreate 方法调用");
 //        setContentView(R.layout.activity_main)
 
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 //        binding.root.button2.text = "myButton2"
 
@@ -51,12 +52,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         setSupportActionBar(toolbar)
+        text1.setOnClickListener {
+            Log.d("tag", "text1 click")
+        }
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
             Log.d("tag", "message")
-            val shoppingList = mutableListOf("catfish", "water", "tulips", "blue paint")
-            print(shoppingList[32])
+//            val shoppingList = mutableListOf("catfish", "water", "tulips", "blue paint")
+//            print(shoppingList[32])
         }
 
 

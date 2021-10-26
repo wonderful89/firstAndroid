@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".functions.ui.layout_test_1.LayoutTest1Activity">
+
+<!--        <fragment-->
+<!--            android:id="@+id/test1_fragment"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:name="com.example.firstAndroid.functions.ui.layout_test_1.Test1Fragment"-->
+<!--            android:layout_height="match_parent"/>-->
+        <TextView
+            android:id="@+id/textview2"
+            android:paddingTop="80dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent"
+            android:visibility="gone"
+            android:text="override ...XXX"></TextView>
+<!--        <fragment-->
+<!--            android:id="@+id/test2_fragment"-->
+<!--            android:name="com.example.firstAndroid.functions.ui.layout_test_1.Test1Fragment"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent" />-->
+
+        <com.example.firstAndroid.functions.ui.layout_test_1.Test1View
+            android:id="@+id/test1_view"
+            android:layout_width="match_parent"
+            android:visibility="visible"
+            android:layout_height="match_parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

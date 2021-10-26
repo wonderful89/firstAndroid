@@ -11,6 +11,7 @@ import com.example.firstAndroid.functions.ui.animation.UIAnimate2Activity
 import com.example.firstAndroid.functions.ui.anko.Anko1Activity
 import com.example.firstAndroid.functions.ui.anko.Anko2Activity
 import com.example.firstAndroid.functions.ui.dagger.Dagger1Activity
+import com.example.firstAndroid.functions.ui.layout_test_1.LayoutTest1Activity
 import com.example.firstAndroid.functions.ui.login.LoginActivity
 import com.example.firstAndroid.functions.ui.touchMe.UITouchMeActivity
 import kotlinx.android.synthetic.main.activity_test_list.*
@@ -45,6 +46,7 @@ class UITestListActivity : BaseActivity() {
                 ListViewTest.AnKoTest2.ordinal -> Anko2Activity()
                 ListViewTest.DaggerTest1.ordinal -> Dagger1Activity()
                 ListViewTest.Login.ordinal -> LoginActivity()
+                ListViewTest.LayoutTest1.ordinal -> LayoutTest1Activity()
                 else -> MainActivity()
             }
 
