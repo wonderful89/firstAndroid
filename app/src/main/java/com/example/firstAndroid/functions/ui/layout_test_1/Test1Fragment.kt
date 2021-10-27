@@ -6,22 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.firstAndroid.R
+import kotlinx.android.synthetic.main.fragment_test1_in_test_activity.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Test1Fragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class Test1Fragment : Fragment() {
-    // TODO: Rename and change types of parameters
+// callback: ((view: View?) -> Unit)?
+class Test1Fragment constructor() : Fragment() {
+
     private var param1: String? = null
     private var param2: String? = null
 
+//    var xxxCallback: ((view: View?) -> Unit)? = callback
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,19 +33,14 @@ class Test1Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_test1_in_test_activity, container, false)
+        val view = inflater.inflate(R.layout.fragment_test1_in_test_activity, container, false)
+//        view.look_demo.setOnClickListener {
+//            lookDemoCallback?.let { it -> it(view.look_demo) }
+//        }
+        return view
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Test1Fragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             Test1Fragment().apply {
