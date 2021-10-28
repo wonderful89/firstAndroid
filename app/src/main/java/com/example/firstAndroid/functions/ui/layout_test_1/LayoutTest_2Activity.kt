@@ -25,3 +25,5 @@ class LayoutTest2Activity : BaseActivity() {
         }
     }
 }
+
+

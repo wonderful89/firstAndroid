@@ -1,15 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".functions.ui.layout_test_1.Test2Fragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="120dp"
-        android:background="@color/colorAccent"
-        android:text="@string/hello_blank_fragment" />
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/header_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="1111" />
+
+            <TextView
+                android:id="@+id/header_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="60dp"
+                android:text="XXXX" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:background="@color/gray_400" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/task_list_zone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/gray_400"
+                android:background="@color/cardview_light_background">
+
+                <TextView
+                    android:id="@+id/task_list_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@color/colorAccent"
+                    app:layout_constraintBottom_toBottomOf="@id/task_list_zone"
+                    android:layout_marginBottom="100dp"
+                    app:layout_constraintRight_toRightOf="@id/task_list_zone" />
+
+                <TextView
+                    android:id="@+id/task_list_bottom2"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="#fff300"
+                    app:layout_constraintBottom_toTopOf="@+id/task_list_bottom"
+                    app:layout_constraintRight_toRightOf="@+id/task_list_bottom" />
+
+                <TextView
+                    android:id="@+id/task_list_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="#3300"
+                    app:layout_constraintBottom_toTopOf="@+id/task_list_bottom2"
+                    app:layout_constraintLeft_toLeftOf="@+id/task_list_zone"
+                    app:layout_constraintTop_toTopOf="@+id/task_list_zone" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </FrameLayout>

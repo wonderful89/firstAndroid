@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.fragment_test1_in_test_activity.*
 class LayoutTest1Activity : AppCompatActivity() {
 
     companion object {
-        val tag = "LayoutTest1Activity"
+        const val tag = "LayoutTest1Activity"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
