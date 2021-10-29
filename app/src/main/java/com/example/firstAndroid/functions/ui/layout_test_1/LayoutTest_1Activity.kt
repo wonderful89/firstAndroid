@@ -8,6 +8,8 @@ import com.example.firstAndroid.R
 import kotlinx.android.synthetic.main.activity_layout_test1.*
 import com.example.firstAndroid.base.utils.*
 import kotlinx.android.synthetic.main.fragment_test1_in_test_activity.*
+//import okhttp3.Request
+//
 
 class LayoutTest1Activity : AppCompatActivity() {
 
