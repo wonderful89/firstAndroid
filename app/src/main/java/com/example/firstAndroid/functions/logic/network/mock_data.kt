@@ -21,7 +21,7 @@ class FakeInterceptor : Interceptor {
             // Get Query String.
             val query: String? = uri.getQuery()
             // Parse the Query String.
-            val parsedQuery = query?.split("=".toRegex())?.toTypedArray() ?: arrayOf()
+            val parsedQuery = query?.split("[=&]".toRegex())?.toTypedArray() ?: arrayOf()
 //            val responseString = "[{\"id\":1,\"age\":28,\"name\":\"Victor Apoyan\"}]"
             var responseString: String = ""
             responseString = when {
