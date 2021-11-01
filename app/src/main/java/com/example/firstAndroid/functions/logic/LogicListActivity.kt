@@ -27,13 +27,17 @@ class LogicListActivity : BaseActivity() {
 
         listView.setOnItemClickListener { _, _, position: Int, _: Long ->
             var intentName: String? = null
-            intentName = when (position) {
-                LogicTest.UI.ordinal -> "/ui/animation1"
-                LogicTest.Login.ordinal -> "/ui/animation2"
-                else -> "/ui/animation2"
-            }
-
-            ARouter.getInstance().build(intentName).navigation()
+            var pos: LogicTest = LogicTest.values()[position]
+//            intentName = when (position) {
+//                LogicTest.Network.ordinal -> "/logic/network"
+//                LogicTest.Storage.ordinal -> "/logic/storage"
+//                else -> "/ui/animation2"
+//            }
+            intentName = pos.path
+            val name = intentName.split("/".toRegex()).lastOrNull() ?: "Unknown"
+            ARouter.getInstance().build(intentName)
+                .withString("title", name)
+                .navigation()
 //            val intent = android.content.Intent(this, intentClass)
 //            startActivity(intent)
         }

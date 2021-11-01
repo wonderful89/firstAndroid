@@ -17,6 +17,7 @@ abstract class BaseActivity : AppCompatActivity(), HasAndroidInjector {
 
     open fun isDagger(): Boolean = false
 
+
     @Inject
     lateinit var androidInjector: DispatchingAndroidInjector<Any>
 
@@ -30,6 +31,7 @@ abstract class BaseActivity : AppCompatActivity(), HasAndroidInjector {
             AndroidInjection.inject(this)
         }
         onCreating(savedInstanceState)
+//        val title2 = intent.getStringExtra("title")
         title = this.javaClass.simpleName
     }
 
