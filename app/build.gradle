@@ -80,6 +80,11 @@ android {
             resValue "string", "app_name", "App Mock"
         }
     }
+
+    lintOptions {
+        abortOnError false
+    }
+
 }
 
 buildscript {

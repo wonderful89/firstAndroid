@@ -16,7 +16,7 @@ import com.example.firstAndroid.base.BaseActivity
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.alibaba.android.arouter.launcher.ARouter
-import com.amitshekhar.DebugDB
+//import com.amitshekhar.DebugDB
 import com.example.firstAndroid.functions.logic.LogicTest
 import io.reactivex.Observable
 import io.reactivex.Observer
@@ -51,7 +51,8 @@ class StorageMainActivity : BaseActivity() {
     var counter = 0;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val url = DebugDB.getAddressLog();
+//        val url = DebugDB.getAddressLog();
+        val url = "aaa";
         Log.w(tag, "debug db url = $url")
         setContentView(R.layout.activity_storage_main)
         title = intent.getStringExtra("title")
