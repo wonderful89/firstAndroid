@@ -334,9 +334,6 @@ class MyApplication : DaggerApplication() {
         //x5内核初始化接口
         QbSdk.initX5Environment(applicationContext, cb)
     }
-    override fun onTerminate() {
-        super.onTerminate()
-    }
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
         Log.d("$tag", "注入代码")

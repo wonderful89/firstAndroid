@@ -5,6 +5,10 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.firstAndroid.base.BaseActivity
 import com.example.firstAndroid.functions.components.ComponentActivity
 import com.example.firstAndroid.functions.logic.LogicListActivity
@@ -15,14 +19,26 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
-class TestListActivity : BaseActivity() {
+class TestListActivity : BaseActivity(), LifecycleObserver{
     companion object {
         const val tag = "TestList"
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+    fun onLifecyclePause() {
+        Log.d(tag, "paused")
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    fun onLifecycleResume() {
+        Log.d(tag, "resumed")
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         EventBus.getDefault().register(this)
+        ProcessLifecycleOwner.get().lifecycle.addObserver(this);
         setContentView(R.layout.activity_test_list)
 
         val lists = MainTest.values().map { item -> item.title }
