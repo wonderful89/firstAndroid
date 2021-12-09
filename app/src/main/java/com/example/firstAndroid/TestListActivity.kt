@@ -11,6 +11,9 @@ import com.example.firstAndroid.functions.logic.LogicListActivity
 import com.example.firstAndroid.functions.ui.UITestListActivity
 import com.example.firstAndroid.functions.util.UtilTestActivity
 import kotlinx.android.synthetic.main.activity_test_list.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class TestListActivity : BaseActivity() {
     companion object {
@@ -19,6 +22,7 @@ class TestListActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        EventBus.getDefault().register(this)
         setContentView(R.layout.activity_test_list)
 
         val lists = MainTest.values().map { item -> item.title }
@@ -44,4 +48,23 @@ class TestListActivity : BaseActivity() {
             startActivity(intent)
         }
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = false)
+    fun onReceiveEventBus(messageEvent:MessageEvent) {
+        Log.d("tag", "event: ${messageEvent.message}");
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onReceiveEventBus2(messageEvent:MessageEvent) {
+        Log.d("tag", "event22: ${messageEvent.message}");
+    }
+
+    override fun onDestroy() {
+        EventBus.getDefault().unregister(this)
+        super.onDestroy()
+    }
+}
+
+class MessageEvent(val message: String, val code: Int) {
+
 }
