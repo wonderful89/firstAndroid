@@ -16,5 +16,6 @@ enum class ListViewTest(val title: String, val content: String = "") {
     DaggerTest1("Dagger基本使用"),
     LayoutTest1("布局测试1"),
     LayoutTest2("布局测试2"),
+    CustomView("布局测试custom-view"),
     Login("登录");
 }

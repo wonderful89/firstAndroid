@@ -11,6 +11,7 @@ import com.example.firstAndroid.functions.ui.animation.UIAnimate1Activity
 import com.example.firstAndroid.functions.ui.animation.UIAnimate2Activity
 import com.example.firstAndroid.functions.ui.anko.Anko1Activity
 import com.example.firstAndroid.functions.ui.anko.Anko2Activity
+import com.example.firstAndroid.functions.ui.customview.CustomViewActivity
 import com.example.firstAndroid.functions.ui.dagger.Dagger1Activity
 import com.example.firstAndroid.functions.ui.layout_test_1.LayoutTest1Activity
 import com.example.firstAndroid.functions.ui.layout_test_1.LayoutTest2Activity
@@ -55,6 +56,7 @@ class UITestListActivity : BaseActivity() {
                 ListViewTest.Login.ordinal -> LoginActivity()
                 ListViewTest.LayoutTest1.ordinal -> LayoutTest1Activity()
                 ListViewTest.LayoutTest1.ordinal -> LayoutTest2Activity()
+                ListViewTest.CustomView.ordinal -> CustomViewActivity()
                 else -> MainActivity()
             }
 

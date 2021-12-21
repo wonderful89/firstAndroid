@@ -12,10 +12,12 @@
         <entry key="app/src/main/res/drawable/heart_beat_anim.xml" value="0.5098958333333333" />
         <entry key="app/src/main/res/drawable/layout_test_corner.xml" value="0.4359375" />
         <entry key="app/src/main/res/drawable/listview_selector_0.xml" value="0.5098958333333333" />
+        <entry key="app/src/main/res/layout/activity_custom_view.xml" value="0.4171875" />
         <entry key="app/src/main/res/layout/activity_dagger1.xml" value="0.34782608695652173" />
         <entry key="app/src/main/res/layout/activity_layout_test1.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_layout_test2.xml" value="0.4447463768115942" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3523550724637681" />
+        <entry key="app/src/main/res/layout/activity_main2.xml" value="0.4207427536231884" />
         <entry key="app/src/main/res/layout/activity_main_reactive.xml" value="0.4578125" />
         <entry key="app/src/main/res/layout/activity_network_main.xml" value="0.2635416666666667" />
         <entry key="app/src/main/res/layout/activity_storage_main.xml" value="0.3591485507246377" />
@@ -31,6 +33,8 @@
         <entry key="app/src/main/res/layout/sample_test1_view.xml" value="0.41394927536231885" />
         <entry key="app/src/main/res/layout/sample_test2_view.xml" value="0.41394927536231885" />
         <entry key="app/src/main/res/layout/test_constraint_view_1.xml" value="0.3917572463768116" />
+        <entry key="app/src/main/res/layout/toast_layout.xml" value="0.36432160804020103" />
+        <entry key="app/src/main/res/layout/view_custom_test_1.xml" value="0.36432160804020103" />
       </map>
     </option>
   </component>
