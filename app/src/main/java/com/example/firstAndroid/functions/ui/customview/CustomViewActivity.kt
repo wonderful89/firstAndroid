@@ -10,7 +10,6 @@ import com.example.firstAndroid.base.utils.showToast
 import kotlinx.android.synthetic.main.activity_custom_view.*
 import kotlinx.android.synthetic.main.view_custom_test_1.view.*
 import org.jetbrains.anko.backgroundColor
-import org.jetbrains.anko.contentView
 
 class CustomViewActivity : AppCompatActivity() {
     companion object {
