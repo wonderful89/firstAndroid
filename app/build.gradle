@@ -87,11 +87,11 @@ android {
 
     sourceSets {
         main {
-            res.srcDirs = [
-                    'src/main/res',
-                    'src/main/res/layout',
-                    'src/main/res/layout/activity',
-            ]
+//            res.srcDirs = [
+//                    'src/main/res',
+//                    'src/main/res/layout',
+////                    'src/main/res/layout/activity',
+//            ]
         }
     }
 
