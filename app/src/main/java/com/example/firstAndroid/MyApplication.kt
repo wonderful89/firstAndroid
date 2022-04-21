@@ -1,8 +1,10 @@
 package com.example.firstAndroid
 
-import android.app.Application
 import android.os.Environment
 import android.util.Log
+import com.alibaba.android.arouter.launcher.ARouter
+import com.example.firstAndroid.base.ActivityLifecycleCallbacksImpl
+import com.qqz.baselib.QZBaseLib
 import com.tencent.bugly.Bugly
 import com.tencent.bugly.beta.Beta
 import com.tencent.bugly.beta.download.DownloadListener
@@ -10,8 +12,6 @@ import com.tencent.bugly.beta.download.DownloadTask
 import com.tencent.bugly.beta.upgrade.UpgradeStateListener
 import com.tencent.smtt.sdk.QbSdk
 import com.tencent.smtt.sdk.QbSdk.PreInitCallback
-import com.alibaba.android.arouter.launcher.ARouter
-import com.example.firstAndroid.functions.ui.dagger.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 
@@ -34,6 +34,12 @@ class MyApplication : DaggerApplication() {
         Thread {
             initAsync()
         }.start()
+        Log.e("App", "QZBaseLib version = ${QZBaseLib.version}")
+        val mActivityLifecycleCallbacks =
+            ActivityLifecycleCallbacksImpl()
+        this.registerActivityLifecycleCallbacks(mActivityLifecycleCallbacks)
+        QZBaseLib.printResolution(this)
+        QZBaseLib.initWithApp(this)
     }
 
     private fun initSync(){

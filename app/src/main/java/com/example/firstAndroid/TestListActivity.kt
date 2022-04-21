@@ -14,6 +14,8 @@ import com.example.firstAndroid.functions.components.ComponentActivity
 import com.example.firstAndroid.functions.logic.LogicListActivity
 import com.example.firstAndroid.functions.ui.UITestListActivity
 import com.example.firstAndroid.functions.util.UtilTestActivity
+import com.qqz.baselib.QZBaseLib
+import com.qqz.baselib.QZBaseTool
 import kotlinx.android.synthetic.main.activity_test_list.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -47,11 +49,21 @@ class TestListActivity : BaseActivity(), LifecycleObserver{
         listView.dividerHeight = 2
         listView.setSelector(R.drawable.listview_selector_0)
 
+//        QZBaseLib.printResolution(this)
+
         listView.setOnItemClickListener { adapterView, view, position: Int, id: Long ->
             val selectedItem = adapterView.getItemAtPosition(position)
             Log.w(tag, "view = $view")
             Log.w(tag, "selectItem = $selectedItem")
             var intentActivity: AppCompatActivity? = null
+            when(position) {
+                MainTest.DensitySetting.ordinal -> {
+//                    QZBaseLib.setDensityDpi(200)
+                    QZBaseLib.magnifyTwoTimes()
+                    QZBaseTool.recreateActivity(this, true)
+                    return@setOnItemClickListener
+                }
+            }
             intentActivity = when (position) {
                 MainTest.UI.ordinal -> UITestListActivity()
                 MainTest.Logic.ordinal -> LogicListActivity()
@@ -59,7 +71,6 @@ class TestListActivity : BaseActivity(), LifecycleObserver{
                 MainTest.Component.ordinal -> ComponentActivity()
                 else -> MainActivity()
             }
-
             val intent = android.content.Intent(this, intentActivity.javaClass)
             startActivity(intent)
         }

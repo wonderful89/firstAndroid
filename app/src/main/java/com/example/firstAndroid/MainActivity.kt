@@ -12,6 +12,7 @@ import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.example.firstAndroid.databinding.ActivityMainBinding
+import com.qqz.baselib.QZBaseLib
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_u_i_touch_me.*

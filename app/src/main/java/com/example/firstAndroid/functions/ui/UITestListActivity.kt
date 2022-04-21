@@ -17,6 +17,8 @@ import com.example.firstAndroid.functions.ui.layout_test_1.LayoutTest1Activity
 import com.example.firstAndroid.functions.ui.layout_test_1.LayoutTest2Activity
 import com.example.firstAndroid.functions.ui.login.LoginActivity
 import com.example.firstAndroid.functions.ui.touchMe.UITouchMeActivity
+import com.qqz.baselib.QZBaseLib
+import com.qqz.baselib.QZBaseTool
 import kotlinx.android.synthetic.main.activity_test_list.*
 import org.greenrobot.eventbus.EventBus
 import java.util.logging.Logger

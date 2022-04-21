@@ -119,6 +119,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     implementation files('../libs/tbs_sdk_20200713_223411.jar')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation project(path: ':baselib')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
