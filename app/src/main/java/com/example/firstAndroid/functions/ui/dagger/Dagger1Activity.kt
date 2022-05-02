@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.firstAndroid.R
+import com.example.firstAndroid.databinding.ActivityDagger1Binding
 import dagger.Component
-import kotlinx.android.synthetic.main.activity_dagger1.*
 import javax.inject.Inject
 
 /**
@@ -21,6 +21,7 @@ class Dagger1Activity : AppCompatActivity() {
         const val tag = "Dagger1Activity"
     }
 
+    private  lateinit var binding: ActivityDagger1Binding
     /**
      * step: 4
      */
@@ -35,11 +36,13 @@ class Dagger1Activity : AppCompatActivity() {
     lateinit var shoe2: Shoe
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dagger1)
+//        setContentView(R.layout.activity_dagger1)
+        binding = ActivityDagger1Binding.inflate(layoutInflater)
+        setContentView(binding.root)
 //        testMagicBox()
 //        testMyMagicBox()
 
-        button3.setOnClickListener(){
+        binding.button3.setOnClickListener(){
             ARouter.getInstance().build("/task/test").navigation()
 //            ARouter.getInstance().build("/ui/animation1").navigation()
         }

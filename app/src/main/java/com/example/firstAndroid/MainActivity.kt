@@ -9,21 +9,16 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.util.Log
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import com.example.firstAndroid.databinding.ActivityMainBinding
+//import com.example.firstAndroid.databinding.Content2MainBinding
 import com.qqz.baselib.QZBaseLib
 
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_u_i_touch_me.*
-import kotlinx.android.synthetic.main.content2_main.*
-import kotlinx.android.synthetic.main.content2_main.button2
-import kotlinx.android.synthetic.main.content2_main.view.*
 import org.jetbrains.anko.doAsync
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+//    private lateinit var contentBinding: Content2MainBinding
 
     var repository = Repository("ButtonTT",
         "Mladen Rakonjac", 1000, true)
@@ -35,28 +30,27 @@ class MainActivity : AppCompatActivity() {
 //        setContentView(R.layout.activity_main)
 
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+//        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 //        binding.root.button2.text = "myButton2"
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        binding.repository = repository
-        binding.executePendingBindings()
+//        binding.repository = repository
+//        binding.executePendingBindings()
 
-        binding.root.apply {
-//            button2.text = "myButton2"
-            // 因为后执行，会覆盖下面的。
-            button2.setOnClickListener {
-                Log.d("test", "button click")
-                val intent = Intent(this@MainActivity, TestListActivity().javaClass)
-                startActivity(intent)
-            }
-
-        }
-
-        setSupportActionBar(toolbar)
-        text1.setOnClickListener {
-            Log.d("tag", "text1 click")
-        }
-        fab.setOnClickListener { view ->
+//        contentBinding = binding.content2
+//        contentBinding.button2.text = "myButton2"
+//        contentBinding.button2.setOnClickListener {
+//            Log.d("test", "button click")
+//            val intent = Intent(this@MainActivity, TestListActivity().javaClass)
+//            startActivity(intent)
+//        }
+//
+//        setSupportActionBar(binding.toolbar)
+//        contentBinding.text1.setOnClickListener {
+//            Log.d("tag", "text1 click")
+//        }
+        binding.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
             Log.d("tag", "message")
@@ -65,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        fab.setOnLongClickListener {
+        binding.fab.setOnLongClickListener {
             Log.w("tag", "aaa")
             true
 //            return@setOnLongClickListener true

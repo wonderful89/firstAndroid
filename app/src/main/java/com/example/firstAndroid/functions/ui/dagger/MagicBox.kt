@@ -2,7 +2,6 @@ package com.example.firstAndroid.functions.ui.dagger
 
 import android.util.Log
 import dagger.Component
-import kotlinx.android.synthetic.main.item_simple_list_6_checked.view.*
 import javax.inject.Inject
 
 class  MyMagicClass constructor(){

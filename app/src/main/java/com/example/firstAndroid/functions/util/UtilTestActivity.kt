@@ -6,23 +6,29 @@ import android.widget.ArrayAdapter
 import com.example.firstAndroid.R
 import com.example.firstAndroid.MainActivity
 import com.example.firstAndroid.base.BaseActivity
-import kotlinx.android.synthetic.main.activity_test_list.*
+import com.example.firstAndroid.databinding.ActivityTestListBinding
+
+//import kotlinx.android.synthetic.main.activity_test_list.*
 
 class UtilTestActivity : BaseActivity() {
     companion object{
         const val tag = "UtilTestList"
     }
+
+    private lateinit var binding: ActivityTestListBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_test_list)
+//        setContentView(R.layout.activity_test_list)
+        binding = ActivityTestListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val lists = UtilTest.values().map { item -> item.title }
         val arrayAdapter2 = ArrayAdapter(this, R.layout.item_simple_list_0, lists)
-        listView.adapter = arrayAdapter2
-        listView.dividerHeight = 2
-        listView.setSelector(R.drawable.listview_selector_0)
+        binding.listView.adapter = arrayAdapter2
+        binding.listView.dividerHeight = 2
+        binding.listView.setSelector(R.drawable.listview_selector_0)
 
-        listView.setOnItemClickListener { _, _, position: Int, _: Long ->
+        binding.listView.setOnItemClickListener { _, _, position: Int, _: Long ->
             var intentClass: Class<AppCompatActivity>? = null
             intentClass = when (position) {
                 else -> MainActivity().javaClass

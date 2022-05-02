@@ -10,7 +10,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.firstAndroid.R
-import kotlinx.android.synthetic.main.activity_web_view_origin.*
+import com.example.firstAndroid.databinding.ActivityWebViewOriginBinding
+
+//import kotlinx.android.synthetic.main.activity_web_view_origin.*
 
 class WebViewOriginActivity : AppCompatActivity() {
 
@@ -18,21 +20,25 @@ class WebViewOriginActivity : AppCompatActivity() {
         val tag = "WebViewOriginActivity";
     }
 
+    private lateinit var binding: ActivityWebViewOriginBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_web_view_origin)
+//        setContentView(R.layout.activity_web_view_origin)
+        binding = ActivityWebViewOriginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         configWebView()
 
-        button.setOnClickListener {
-            webView.evaluateJavascript(
+        binding.button.setOnClickListener {
+            binding.webView.evaluateJavascript(
                 "console.log('hello from native!!');(function() { return \"this\"; })();",
                 ValueCallback<String?> { s ->
                     Log.d("LogName", s) // Prints 'this'
                 })
         }
 
-        button2.setOnClickListener {
-            webView.loadUrl("javascript:printLog('111')")
+        binding.button2.setOnClickListener {
+            binding.webView.loadUrl("javascript:printLog('111')")
         }
 
         loadAsset()
@@ -40,21 +46,21 @@ class WebViewOriginActivity : AppCompatActivity() {
     }
 
     private fun loadAsset() {
-        webView.loadUrl("file:///android_asset/html/debug.html");
+        binding.webView.loadUrl("file:///android_asset/html/debug.html");
     }
 
     private fun loadUrl() {
 //        val url = "https://baidu.com";
         val url = "http://www.useragentstring.com/";
-        webView.loadUrl(url);
+        binding.webView.loadUrl(url);
     }
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun configWebView() {
-        webView.webChromeClient = webChromeClient
-        webView.webViewClient = webViewClient
+        binding.webView.webChromeClient = webChromeClient
+        binding.webView.webViewClient = webViewClient
 
-        val webSettings = webView.settings
+        val webSettings = binding.webView.settings
         webSettings.javaScriptEnabled = true //允许使用js
 
         WebView.setWebContentsDebuggingEnabled(true) // 开启调试
@@ -64,7 +70,7 @@ class WebViewOriginActivity : AppCompatActivity() {
         webSettings.setSupportZoom(true)
         webSettings.builtInZoomControls = true
 
-        webView.addJavascriptInterface(JSInterface(), "bridgeName")
+        binding.webView.addJavascriptInterface(JSInterface(), "bridgeName")
     }
 
     private class JSInterface {
@@ -78,7 +84,7 @@ class WebViewOriginActivity : AppCompatActivity() {
     }
 
     private fun loadHtmlCode() {
-        webView.loadDataWithBaseURL(
+        binding.webView.loadDataWithBaseURL(
             null, "<html><head><title> 欢迎您 </title></head>" +
                     "<body><h2>使用webview显示 html代码</h2></body></html>", "text/html", "utf-8", null
         );
@@ -114,7 +120,7 @@ class WebViewOriginActivity : AppCompatActivity() {
 
         //加载进度回调
         override fun onProgressChanged(view: WebView, newProgress: Int) {
-            progressbar.progress = newProgress
+            binding.progressbar.progress = newProgress
         }
 
     }
@@ -122,7 +128,7 @@ class WebViewOriginActivity : AppCompatActivity() {
     //WebViewClient主要帮助WebView处理各种通知、请求事件
     private val webViewClient: WebViewClient = object : WebViewClient() {
         override fun onPageFinished(view: WebView, url: String) { //页面加载完成
-            progressbar.visibility = View.GONE
+            binding.progressbar.visibility = View.GONE
         }
 
         override fun onPageStarted(
@@ -130,7 +136,7 @@ class WebViewOriginActivity : AppCompatActivity() {
             url: String,
             favicon: Bitmap?
         ) { //页面开始加载
-            progressbar.visibility = View.VISIBLE
+            binding.progressbar.visibility = View.VISIBLE
             super.onPageStarted(view, url, favicon)
         }
 

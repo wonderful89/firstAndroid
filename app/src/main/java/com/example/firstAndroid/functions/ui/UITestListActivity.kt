@@ -7,6 +7,7 @@ import com.example.firstAndroid.MainActivity
 import com.example.firstAndroid.MessageEvent
 import com.example.firstAndroid.R
 import com.example.firstAndroid.base.BaseActivity
+import com.example.firstAndroid.databinding.ActivityTestListBinding
 import com.example.firstAndroid.functions.ui.animation.UIAnimate1Activity
 import com.example.firstAndroid.functions.ui.animation.UIAnimate2Activity
 import com.example.firstAndroid.functions.ui.anko.Anko1Activity
@@ -17,9 +18,6 @@ import com.example.firstAndroid.functions.ui.layout_test_1.LayoutTest1Activity
 import com.example.firstAndroid.functions.ui.layout_test_1.LayoutTest2Activity
 import com.example.firstAndroid.functions.ui.login.LoginActivity
 import com.example.firstAndroid.functions.ui.touchMe.UITouchMeActivity
-import com.qqz.baselib.QZBaseLib
-import com.qqz.baselib.QZBaseTool
-import kotlinx.android.synthetic.main.activity_test_list.*
 import org.greenrobot.eventbus.EventBus
 import java.util.logging.Logger
 
@@ -30,22 +28,26 @@ class UITestListActivity : BaseActivity() {
 
         //        val log: Logger = Logger.getLogger(this.javaClass.name)
         val log: Logger = Logger.getLogger(this::class.java.name)
+        private lateinit var binding: ActivityTestListBinding
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_test_list)
+//        setContentView(R.layout.activity_test_list)
+        binding = ActivityTestListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
 //        title = this.javaClass.simpleName //"UI测试"
 
         val lists = ListViewTest.values().map { item -> item.title }
         val arrayAdapter2 = ArrayAdapter(this, R.layout.item_simple_list_0, lists)
-        listView.adapter = arrayAdapter2
-        listView.dividerHeight = 2
-        listView.setSelector(R.drawable.listview_selector_0)
+        binding.listView.adapter = arrayAdapter2
+        binding.listView.dividerHeight = 2
+        binding.listView.setSelector(R.drawable.listview_selector_0)
 
         EventBus.getDefault().post(MessageEvent("message1", code = 200))
 
-        listView.setOnItemClickListener { _, _, position: Int, _: Long ->
+        binding.listView.setOnItemClickListener { _, _, position: Int, _: Long ->
             var intentActivity: AppCompatActivity? = null
             intentActivity = when (position) {
                 ListViewTest.TestView1.ordinal -> UITestView1Activity()

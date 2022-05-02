@@ -6,15 +6,15 @@ import android.util.DisplayMetrics
 import android.util.Log
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.appcompat.app.AppCompatActivity
 import com.example.firstAndroid.R
 import com.example.firstAndroid.base.BaseActivity
-import kotlinx.android.synthetic.main.activity_u_i_touch_me.*
+import com.example.firstAndroid.databinding.ActivityUITouchMeBinding
 import kotlin.random.Random
 
 @ExperimentalUnsignedTypes
 class UITouchMeActivity : BaseActivity() {
     private var dotsModel = Dots()
+    private lateinit var binding: ActivityUITouchMeBinding
     private val mDotView: DotView by lazy {
         val view = DotView(
             this,
@@ -36,7 +36,9 @@ class UITouchMeActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_u_i_touch_me)
+//        setContentView(R.layout.activity_u_i_touch_me)
+        binding = ActivityUITouchMeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         dotsModel.addDot(10.toFloat(), 10.toFloat(), Color.RED, 10)
 
         // 第1种设置方法
@@ -78,9 +80,9 @@ class UITouchMeActivity : BaseActivity() {
             0.0F
         )
         mDotView.layoutParams = containerParams
-        container.addView(mDotView)
+        binding.container.addView(mDotView)
 
-        button.setOnClickListener {
+        binding.button.setOnClickListener {
             try {
                 val c = Random.nextInt(0, 0).toFloat()
             } catch (e: Exception) {
@@ -92,7 +94,7 @@ class UITouchMeActivity : BaseActivity() {
             dotsModel.addDot(x, y, Color.RED, 10)
         }
 
-        button2.setOnClickListener {
+        binding.button2.setOnClickListener {
             val x = Random.nextInt(0, width).toFloat()
             val y = Random.nextInt(0, height).toFloat()
             dotsModel.addDot(x, y, Color.WHITE, 10)

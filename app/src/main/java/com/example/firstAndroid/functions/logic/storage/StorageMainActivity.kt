@@ -16,6 +16,7 @@ import com.example.firstAndroid.base.BaseActivity
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.alibaba.android.arouter.launcher.ARouter
+import com.example.firstAndroid.databinding.ActivityStorageMainBinding
 //import com.amitshekhar.DebugDB
 import com.example.firstAndroid.functions.logic.LogicTest
 import io.reactivex.Observable
@@ -24,8 +25,6 @@ import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.internal.util.HalfSerializer.onNext
-import kotlinx.android.synthetic.main.activity_storage_main.*
-import kotlinx.android.synthetic.main.activity_test_list.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.sql.Date
@@ -47,6 +46,7 @@ class StorageMainActivity : BaseActivity() {
 
     private lateinit var db: AppDatabase
     private var userList: List<EntityUser?>? = null
+    private lateinit var binding: ActivityStorageMainBinding
 
     var counter = 0;
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +54,9 @@ class StorageMainActivity : BaseActivity() {
 //        val url = DebugDB.getAddressLog();
         val url = "aaa";
         Log.w(tag, "debug db url = $url")
-        setContentView(R.layout.activity_storage_main)
+//        setContentView(R.layout.activity_storage_main)
+        binding = ActivityStorageMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         title = intent.getStringExtra("title")
 
         /**
@@ -75,7 +77,7 @@ class StorageMainActivity : BaseActivity() {
     }
 
     private fun initViews() {
-        insert_btn.setOnClickListener {
+        binding.insertBtn.setOnClickListener {
             runOnIoThread {
                 counter++
                 var user1 = EntityUser()
@@ -161,11 +163,11 @@ class StorageMainActivity : BaseActivity() {
             }
             runOnUiThread {
                 val arrayAdapter2 = ArrayAdapter(this, R.layout.item_simple_list_0, lists!!)
-                listView2.adapter = arrayAdapter2
-                listView2.dividerHeight = 2
-                listView2.setSelector(R.drawable.listview_selector_0)
+                binding.listView2.adapter = arrayAdapter2
+                binding.listView2.dividerHeight = 2
+                binding.listView2.setSelector(R.drawable.listview_selector_0)
 
-                listView2.setOnItemClickListener { _, _, position: Int, _: Long ->
+                binding.listView2.setOnItemClickListener { _, _, position: Int, _: Long ->
                     AlertDialog.Builder(this)
                         .setMessage("确定删除")
                         .setTitle("对话框")

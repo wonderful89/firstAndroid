@@ -10,13 +10,14 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.firstAndroid.base.BaseActivity
+import com.example.firstAndroid.databinding.ActivityTestListBinding
 import com.example.firstAndroid.functions.components.ComponentActivity
 import com.example.firstAndroid.functions.logic.LogicListActivity
 import com.example.firstAndroid.functions.ui.UITestListActivity
 import com.example.firstAndroid.functions.util.UtilTestActivity
 import com.qqz.baselib.QZBaseLib
 import com.qqz.baselib.QZBaseTool
-import kotlinx.android.synthetic.main.activity_test_list.*
+//import kotlinx.android.synthetic.main.activity_test_list.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -25,6 +26,8 @@ class TestListActivity : BaseActivity(), LifecycleObserver{
     companion object {
         const val tag = "TestList"
     }
+
+    private lateinit var binding: ActivityTestListBinding
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     fun onLifecyclePause() {
@@ -41,17 +44,19 @@ class TestListActivity : BaseActivity(), LifecycleObserver{
         super.onCreate(savedInstanceState)
         EventBus.getDefault().register(this)
         ProcessLifecycleOwner.get().lifecycle.addObserver(this);
-        setContentView(R.layout.activity_test_list)
+//        setContentView(R.layout.activity_test_list)
+        binding = ActivityTestListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val lists = MainTest.values().map { item -> item.title }
         val arrayAdapter2 = ArrayAdapter(this, R.layout.item_simple_list_0, lists)
-        listView.adapter = arrayAdapter2
-        listView.dividerHeight = 2
-        listView.setSelector(R.drawable.listview_selector_0)
+        binding.listView.adapter = arrayAdapter2
+        binding.listView.dividerHeight = 2
+        binding.listView.setSelector(R.drawable.listview_selector_0)
 
 //        QZBaseLib.printResolution(this)
 
-        listView.setOnItemClickListener { adapterView, view, position: Int, id: Long ->
+        binding.listView.setOnItemClickListener { adapterView, view, position: Int, id: Long ->
             val selectedItem = adapterView.getItemAtPosition(position)
             Log.w(tag, "view = $view")
             Log.w(tag, "selectItem = $selectedItem")

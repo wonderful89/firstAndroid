@@ -52,7 +52,7 @@ private fun initRxJavaPlugins() {
      */
     RxJavaPlugins.setErrorHandler { e ->
         if (e is UndeliverableException) {
-            Log.e(TAG, e.message)
+            Log.e(TAG, e.message ?: "ooo")
         } else {
             // Forward all others to current thread's uncaught exception handler
             Thread.currentThread().also { thread ->

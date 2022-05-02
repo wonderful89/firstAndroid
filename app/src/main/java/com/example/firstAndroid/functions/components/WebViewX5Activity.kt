@@ -14,50 +14,56 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.firstAndroid.R
+import com.example.firstAndroid.databinding.ActivityWebViewX5Binding
 import com.tencent.smtt.sdk.ValueCallback
 import com.tencent.smtt.sdk.WebView
-import kotlinx.android.synthetic.main.activity_web_view_x5.*
-import kotlinx.android.synthetic.main.activity_web_view_x5.progressbar
-import kotlinx.android.synthetic.main.activity_web_view_x5.webView
+//import kotlinx.android.synthetic.main.activity_web_view_x5.*
+//import kotlinx.android.synthetic.main.activity_web_view_x5.progressbar
+//import kotlinx.android.synthetic.main.activity_web_view_x5.webView
 
 class WebViewX5Activity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityWebViewX5Binding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_web_view_x5)
+//        setContentView(R.layout.activity_web_view_x5)
+        binding = ActivityWebViewX5Binding.inflate(layoutInflater)
+        setContentView(binding.root)
         configWebView()
 
-        buttonX5_1.setOnClickListener {
-            webView.evaluateJavascript(
+        binding.buttonX51.setOnClickListener {
+            binding.webView.evaluateJavascript(
                 "console.log('hello from native!!');(function() { return \"this\"; })();",
                 ValueCallback<String?> { s ->
                     Log.d("LogName", s) // Prints 'this'
                 })
         }
 
-        buttonX5_2.setOnClickListener {
-            webView.loadUrl("javascript:printLog('222')")
+        binding.buttonX52.setOnClickListener {
+            binding.webView.loadUrl("javascript:printLog('222')")
         }
 //        loadHtmlCode()
         loadAsset()
     }
 
     private fun loadAsset() {
-        webView.loadUrl("file:///android_asset/html/debug.html");
+        binding.webView.loadUrl("file:///android_asset/html/debug.html");
     }
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun loadUrl(){
 //        val url = "https://baidu.com";
         val url = "http://www.useragentstring.com/";
-        webView.loadUrl(url);
+        binding.webView.loadUrl(url);
     }
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun configWebView() {
-        webView.webChromeClient = webChromeClient
-        webView.webViewClient = webViewClient
+        binding.webView.webChromeClient = webChromeClient
+        binding.webView.webViewClient = webViewClient
 
-        val webSettings = webView.settings
+        val webSettings = binding.webView.settings
         webSettings.javaScriptEnabled = true //允许使用js
 
         android.webkit.WebView.setWebContentsDebuggingEnabled(true) // 开启调试
@@ -67,7 +73,7 @@ class WebViewX5Activity : AppCompatActivity() {
         webSettings.setSupportZoom(true)
         webSettings.builtInZoomControls = true
 
-        webView.addJavascriptInterface(WebViewX5Activity.JSInterface(), "bridgeName")
+        binding.webView.addJavascriptInterface(WebViewX5Activity.JSInterface(), "bridgeName")
     }
 
 
@@ -88,7 +94,7 @@ class WebViewX5Activity : AppCompatActivity() {
             message: String?,
             result: JsResult?
         ): Boolean {
-            val localBuilder: AlertDialog.Builder = AlertDialog.Builder(webView.context)
+            val localBuilder: AlertDialog.Builder = AlertDialog.Builder(binding.webView.context)
             localBuilder.setMessage(message).setPositiveButton("确定", null)
             localBuilder.setCancelable(false)
             localBuilder.create().show()
@@ -109,18 +115,18 @@ class WebViewX5Activity : AppCompatActivity() {
 
         //加载进度回调
         override fun onProgressChanged(p0: WebView?, newProgress: Int) {
-            progressbar.progress = newProgress
+            binding.progressbar.progress = newProgress
         }
     }
 
     //WebViewClient主要帮助WebView处理各种通知、请求事件
     private val webViewClient: WebViewClient = object : WebViewClient() {
         override fun onPageFinished(p0: WebView?, url: String?) { //页面加载完成
-            progressbar.visibility = View.GONE
+            binding.progressbar.visibility = View.GONE
         }
 
         override fun onPageStarted(p0: WebView?, url: String?, favicon: Bitmap?) { //页面开始加载
-            progressbar.visibility = View.VISIBLE
+            binding.progressbar.visibility = View.VISIBLE
         }
 
         override fun shouldOverrideUrlLoading(p0: WebView?, p1: String?): Boolean {
@@ -130,7 +136,7 @@ class WebViewX5Activity : AppCompatActivity() {
     }
 
     private fun loadHtmlCode(){
-        webView.loadDataWithBaseURL(null,"<html><head><title> 欢迎您 </title></head>" +
+        binding.webView.loadDataWithBaseURL(null,"<html><head><title> 欢迎您 </title></head>" +
                 "<body><h2>使用X5 webView显示 html代码</h2></body></html>", "text/html" , "utf-8", null);
     }
 }
