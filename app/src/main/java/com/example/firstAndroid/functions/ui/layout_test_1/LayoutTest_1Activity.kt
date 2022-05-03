@@ -4,10 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import com.example.firstAndroid.R
-import com.example.firstAndroid.base.utils.*
 import com.example.firstAndroid.databinding.ActivityLayoutTest1Binding
-import com.example.firstAndroid.databinding.ActivityViewTest1Binding
 
 //import okhttp3.Request
 //

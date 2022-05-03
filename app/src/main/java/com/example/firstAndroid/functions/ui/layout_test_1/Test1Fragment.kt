@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.firstAndroid.R
+import com.example.firstAndroid.databinding.FragmentTest1InTestActivityBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -13,12 +14,14 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 // callback: ((view: View?) -> Unit)?
-class Test1Fragment constructor() : Fragment() {
+class Test1Fragment : Fragment() {
 
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var binding : FragmentTest1InTestActivityBinding
 
-//    var xxxCallback: ((view: View?) -> Unit)? = callback
+
+    //    var xxxCallback: ((view: View?) -> Unit)? = callback
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -32,11 +35,11 @@ class Test1Fragment constructor() : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_test1_in_test_activity, container, false)
-//        view.look_demo.setOnClickListener {
-//            lookDemoCallback?.let { it -> it(view.look_demo) }
-//        }
-        return view
+//        val view = inflater.inflate(R.layout.fragment_test1_in_test_activity, container, false)
+//        return view
+
+        binding = FragmentTest1InTestActivityBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
     companion object {

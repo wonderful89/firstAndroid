@@ -24,7 +24,8 @@
             android:id="@+id/test1_view"
             android:layout_width="match_parent"
             android:visibility="visible"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            tools:ignore="MissingConstraints" />
 
         <com.example.firstAndroid.functions.ui.layout_test_1.Test2View
             android:id="@+id/test2_view"

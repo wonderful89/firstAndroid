@@ -59,7 +59,7 @@ class UITestListActivity : BaseActivity() {
                 ListViewTest.DaggerTest1.ordinal -> Dagger1Activity()
                 ListViewTest.Login.ordinal -> LoginActivity()
                 ListViewTest.LayoutTest1.ordinal -> LayoutTest1Activity()
-                ListViewTest.LayoutTest1.ordinal -> LayoutTest2Activity()
+                ListViewTest.LayoutTest2.ordinal -> LayoutTest2Activity()
                 ListViewTest.CustomView.ordinal -> CustomViewActivity()
                 else -> MainActivity()
             }
