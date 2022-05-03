@@ -74,6 +74,7 @@ class TestListActivity : BaseActivity(), LifecycleObserver{
                 MainTest.Logic.ordinal -> LogicListActivity()
                 MainTest.Util.ordinal -> UtilTestActivity()
                 MainTest.Component.ordinal -> ComponentActivity()
+                MainTest.OriginMain.ordinal -> MainActivity()
                 else -> MainActivity()
             }
             val intent = android.content.Intent(this, intentActivity.javaClass)

@@ -5,5 +5,6 @@ enum class MainTest(val title: String, val content: String = "") {
     Util("工具测试"),
     Logic("逻辑测试"),
     Component("组件测试"),
+    OriginMain("原始main"),
     DensitySetting("设置density放大2被(生效-其他activity生效)")
 }
