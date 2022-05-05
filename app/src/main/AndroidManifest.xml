@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.firstAndroid"
     android:sharedUserId="android.uid.test1">
-
     <!-- bugly升级：必须的权限配置 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -19,7 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
+        <activity
+            android:name=".functions.logic.reflect.LogicReflectActivity"
+            android:exported="false" />
         <activity
             android:name=".functions.ui.customview.CustomViewActivity"
             android:exported="false" />

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".functions.logic.reflect.LogicReflectActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/button_1"
+            android:gravity="center"
+            android:text="点击事件1"
+            android:background="@color/colorAccent"
+            android:layout_height="80dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/button_2"
+            android:gravity="center"
+            android:text="点击hook点击1的事件"
+            android:background="@color/gray_400"
+            android:layout_height="80dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/button_3"
+            android:gravity="center"
+            android:text="调用方法ddd"
+            android:background="@color/colorAccent"
+            android:layout_height="80dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/button_4"
+            android:gravity="center"
+            android:text="点击hook 方法ddd"
+            android:background="@color/gray_400"
+            android:layout_height="80dp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
