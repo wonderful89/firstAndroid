@@ -27,6 +27,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.internal.util.HalfSerializer.onNext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.io.File
 import java.sql.Date
 import java.time.LocalDateTime
 
@@ -74,6 +75,13 @@ class StorageMainActivity : BaseActivity() {
         refreshData()
         val currentDBPath = getDatabasePath("XXX.db").absolutePath
         Log.w(tag, "currentDBPath = $currentDBPath")
+
+        val path = getDatabasePath(".default-database.db").absolutePath
+        if (File(path).exists()) {
+            Log.i("currentDBPath", "存在")
+        } else {
+            Log.i("currentDBPath", "不存在")
+        }
     }
 
     private fun initViews() {
