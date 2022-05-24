@@ -1,35 +1,25 @@
 package com.example.firstAndroid.functions.logic.storage
 
+//import com.amitshekhar.DebugDB
 import android.annotation.SuppressLint
 import android.content.DialogInterface
-import androidx.appcompat.app.AppCompatActivity
+import android.database.Cursor
+import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.room.Room
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.firstAndroid.R
 import com.example.firstAndroid.base.BaseActivity
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import com.alibaba.android.arouter.launcher.ARouter
+import com.example.firstAndroid.base.utils.closeSafe
 import com.example.firstAndroid.databinding.ActivityStorageMainBinding
-//import com.amitshekhar.DebugDB
-import com.example.firstAndroid.functions.logic.LogicTest
-import io.reactivex.Observable
 import io.reactivex.Observer
-import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.internal.util.HalfSerializer.onNext
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import java.io.File
-import java.sql.Date
-import java.time.LocalDateTime
 
 /**
  * https://www.jianshu.com/p/7354d5048597
@@ -42,7 +32,7 @@ import java.time.LocalDateTime
 class StorageMainActivity : BaseActivity() {
     companion object {
         const val tag = "Storage"
-
+        const val dbName = "default-database"
     }
 
     private lateinit var db: AppDatabase
@@ -66,7 +56,7 @@ class StorageMainActivity : BaseActivity() {
          */
         db = Room.databaseBuilder(
             applicationContext,
-            AppDatabase::class.java, "default-database"
+            AppDatabase::class.java, dbName
         )
             .addMigrations(MIGRATION_1_2)
             .build()
@@ -76,7 +66,7 @@ class StorageMainActivity : BaseActivity() {
         val currentDBPath = getDatabasePath("XXX.db").absolutePath
         Log.w(tag, "currentDBPath = $currentDBPath")
 
-        val path = getDatabasePath(".default-database.db").absolutePath
+        val path = getDatabasePath(dbName).absolutePath
         if (File(path).exists()) {
             Log.i("currentDBPath", "存在")
         } else {
@@ -150,8 +140,60 @@ class StorageMainActivity : BaseActivity() {
         }
     }
 
+    private fun longPressCallback0(){
+        val dataList = arrayListOf<EntityUser>()
+        runOnIoThread {
+            val cursor = db.userDao()!!.selectAll()
+            val makeException = true
+            if (makeException) {
+                while (cursor.moveToNext()) {
+                    val data = cursor.toEntityUser()
+                    dataList.add(data)
+                }
+            } else {
+                cursor.use { cursor ->
+                    while (cursor.moveToNext()) {
+                        val data = cursor.toEntityUser()
+                        dataList.add(data)
+                    }
+                }
+            }
+            Log.d(tag, "dataList = $dataList")
+        }
+    }
 
-    @SuppressLint("CheckResult")
+    /**
+     * 不知道这种在 strict模式下为什么不生效。
+     */
+    private fun longPressCallback1(){
+        val dataList = arrayListOf<EntityUser>()
+        runOnIoThread {
+            val path = getDatabasePath(dbName).absolutePath
+            val dbOriginal = SQLiteDatabase.openOrCreateDatabase(path,null);
+
+            val cursor = dbOriginal.query("user", null, null, null, null,null, null)
+            Log.d(tag, "cursor = $cursor")
+            val makeException = true
+            if (makeException) {
+                while (cursor.moveToNext()) {
+                    val data = cursor.toEntityUser()
+                    dataList.add(data)
+                }
+                cursor.close()
+            } else {
+                cursor.use { cursor ->
+                    while (cursor.moveToNext()) {
+                        val data = cursor.toEntityUser()
+                        dataList.add(data)
+                    }
+                }
+            }
+            Log.d(tag, "dataList = $dataList")
+        }
+    }
+
+
+    @SuppressLint("CheckResult", "RestrictedApi")
     private fun refreshData() {
         runOnIoThread {
             var all: List<EntityUser?>? = db.userDao()!!.all
@@ -192,8 +234,25 @@ class StorageMainActivity : BaseActivity() {
                         .create()
                         .show()
                 }
+                binding.listView2.setOnItemLongClickListener { parent, view, position, id ->
+                    Log.d(tag, "其他逻辑")
+                    when(position) {
+                        0 -> longPressCallback0()
+                        1 -> longPressCallback1()
+                    }
+                    true
+                }
                 Toast.makeText(this,"加载成功",Toast.LENGTH_SHORT).show()
             }
         }
     }
+}
+
+@SuppressLint("Range")
+private fun Cursor.toEntityUser(): EntityUser {
+    val user = EntityUser()
+    user.uid = this.getLong(getColumnIndex("uid"))
+    user.firstName = this.getString(getColumnIndex("first_name"))
+    user.lastName = this.getString(getColumnIndex("last_name"))
+    return user;
 }

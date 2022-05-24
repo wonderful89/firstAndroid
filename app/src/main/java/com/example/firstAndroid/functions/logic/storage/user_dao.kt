@@ -35,4 +35,7 @@ interface UserDao {
 
     @Delete
     fun delete(user: EntityUser?)
+
+    @Query("SELECT * FROM user")
+    fun selectAll(): Cursor
 }

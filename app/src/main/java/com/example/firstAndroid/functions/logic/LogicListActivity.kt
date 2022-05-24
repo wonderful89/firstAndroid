@@ -41,7 +41,7 @@ class LogicListActivity : BaseActivity() {
 //            }
             intentName = pos.path
             val name = intentName.split("/".toRegex()).lastOrNull() ?: "Unknown"
-            if (intentName.contains("")) {
+            if (intentName.contains("pureFunction")) {
                 entry()
                 return@setOnItemClickListener
             }

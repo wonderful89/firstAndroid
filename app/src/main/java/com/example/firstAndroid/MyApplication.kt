@@ -1,6 +1,7 @@
 package com.example.firstAndroid
 
 import android.os.Environment
+import android.os.StrictMode
 import android.util.Log
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.firstAndroid.base.ActivityLifecycleCallbacksImpl
@@ -52,6 +53,20 @@ class MyApplication : DaggerApplication() {
         }
         ARouter.init(this) // 尽可能早，推荐在Application中初始化
         FileConstants.init()
+        initVmPolicy()
+    }
+
+    private fun initVmPolicy(){
+        if (BuildConfig.DEBUG) {
+            Log.d(tag, "initVmPolicy config strict mode")
+            val policy: StrictMode.VmPolicy = StrictMode.VmPolicy.Builder()
+                .detectLeakedClosableObjects()
+                .detectLeakedSqlLiteObjects()
+                .penaltyDeath()
+                .penaltyLog()
+                .build()
+            StrictMode.setVmPolicy(policy)
+        }
     }
 
     open fun isDebug(): Boolean = true
