@@ -15,7 +15,9 @@ fun testParcel() {
 //    testBaseParcelDiffObj()
 //    testParcelableObjectDiffObj()
 //    testNewClass()
-    testAttachment()
+
+//    testAttachment()
+    testAttachmentProblem()
 }
 
 /**
@@ -55,8 +57,47 @@ private fun testAttachment() {
     parcel.unmarshall(bytes, 0, bytes.size);
     parcel.setDataPosition(0);
     val parObj2 = Attachment(parcel)
-    Log.d(tag, "parObj2 = $parObj2")
     val exampaperZipVersion = parObj2.exampaperZipVersion;
+    Log.d(tag, "parObj2 = $parObj2, exampaperZipVersion = $exampaperZipVersion")
+    parcel.recycle();
+}
+
+private fun testAttachmentProblem() {
+    val parObj = AttachmentProblem(
+        docId = "docId",
+        attachmentPurpose = true,
+        exampaperEinkMakeFlag = 1,
+        exampaperZipUrl = "fasdfksadfjlaf",
+//        exampaperZipVersion = 1655445217000,
+        exampaperZipVersion = 100,
+        extName = "pdf",
+        fileId = "3920239203922",
+        taskAttachmentId = "1058479044440215552",
+        thirdExampaperId = "",
+        type = "doc",
+        updateDatetime = null,
+        convertStatus = 1,
+        coverUrl = "dfasfkjalfsalkfj",
+        docName = "fdsafkalfjakf",
+        docType = 13,
+        fileExtendName = "pdf",
+        fileUrl = "sdaflkajsf",
+        fileSize = 114629,
+        metaDuration = 0,
+        originUrl = "adfadjsalfjalkfaklfja",
+    )
+    Log.d(tag, "parObj = $parObj")
+
+    val parcel = Parcel.obtain();
+    parcel.setDataPosition(0);//设置写的位置从0开始
+    parObj.writeToParcel(parcel, 0);
+    val bytes = parcel.marshall()
+
+    parcel.unmarshall(bytes, 0, bytes.size)
+    parcel.setDataPosition(0);
+    val parObj2 = AttachmentProblem(parcel)
+    val exampaperZipVersion = parObj2.exampaperZipVersion
+    Log.d(tag, "parObj2 = $parObj2, exampaperZipVersion = $exampaperZipVersion")
     parcel.recycle();
 }
 
