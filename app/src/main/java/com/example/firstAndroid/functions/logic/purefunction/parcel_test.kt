@@ -12,9 +12,9 @@ fun testParcel() {
 //    testBaseParcel()
 //    testParcelFile()
 //    testBaseParcelSameObj()
-//    testBaseParcelDiffObj()
+    testBaseParcelDiffObj()
 //    testParcelableObjectDiffObj()
-    testNewClass()
+//    testNewClass()
 }
 
 /**
@@ -96,8 +96,13 @@ private fun testBaseParcelDiffObj() {
     val parcel2 = Parcel.obtain();
     parcel2.unmarshall(bytes, 0, bytes.size);
     parcel2.setDataPosition(0);
-    val parObj2 = ParcelableObjectDiffObj(parcel2);
-    Log.d(tag, "parObj2 = $parObj2")
+    try {
+        val parObj2 = ParcelableObjectDiffObj(parcel2);
+        Log.d(tag, "parObj2 = $parObj2")
+    } catch (e: Throwable) {
+        Log.e("xxx", "eeee = $e");
+    }
+
     parcel2.recycle();
 }
 
@@ -223,25 +228,29 @@ class ParcelableObjectSameObj() : Parcelable {
 /**
  * 添加属性
  */
-class ParcelableObjectDiffObj(var age:Int, var grade: Int?) : Parcelable {
+class ParcelableObjectDiffObj(var age:Int) : Parcelable {
 //    var age: Int = 0;
     var name: String? = "";
     var school: String? = ""
-//    var grade: Int? = 0
+    var grade: Int = 0
     var book: Book? = null
+    var cookies: List<String> = arrayListOf()
 
-    constructor(parcel: Parcel) : this(parcel.readInt(), parcel.readValue(Int.javaClass.classLoader) as? Int)
+//    constructor(parcel: Parcel) : this(parcel.readInt(), parcel.readValue(Int.javaClass.classLoader) as? Int)
 
-//    constructor(parcel: Parcel) : this() {
-//        this.age = parcel.readInt()
-//        /// crash
+    constructor(parcel: Parcel) : this(10) {
+        this.age = parcel.readInt()
+        /// crash
 //        this.grade = parcel.readValue(Int.javaClass.classLoader) as Int
-//
-////        this.book = parcel.readParcelable(Book.javaClass.classLoader)
-////        this.grade = parcel.readInt()
-////        this.name = parcel.readString()
-////        this.school = parcel.readString()
-//    }
+
+        /// 2022-05-27 16:53:11.153 11012-11012/com.example.channelDemo2 E/xxx: eeee = java.lang.RuntimeException: Parcel android.os.Parcel@474dbac: Unmarshalling unknown type code 6357102 at offset 8
+        parcel.readList(cookies, Int.javaClass.classLoader)
+
+//        this.book = parcel.readParcelable(Book.javaClass.classLoader)
+//        this.grade = parcel.readInt()
+//        this.name = parcel.readString()
+//        this.school = parcel.readString()
+    }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(age)
