@@ -12,9 +12,93 @@ fun testParcel() {
 //    testBaseParcel()
 //    testParcelFile()
 //    testBaseParcelSameObj()
-    testBaseParcelDiffObj()
+//    testBaseParcelDiffObj()
 //    testParcelableObjectDiffObj()
 //    testNewClass()
+
+//    testAttachment()
+    testAttachmentProblem()
+}
+
+/**
+ * Attachment
+ */
+private fun testAttachment() {
+    val parObj = Attachment(
+        docId = "docId",
+        attachmentPurpose = true,
+        exampaperEinkMakeFlag = 1,
+        exampaperZipUrl = "fasdfksadfjlaf",
+//        exampaperZipVersion = 1655445217000,
+        exampaperZipVersion = 100,
+        extName = "pdf",
+        fileId = "3920239203922",
+        taskAttachmentId = "1058479044440215552",
+        thirdExampaperId = "",
+        type = "doc",
+        updateDatetime = null,
+        convertStatus = 1,
+        coverUrl = "dfasfkjalfsalkfj",
+        docName = "fdsafkalfjakf",
+        docType = 13,
+        fileExtendName = "pdf",
+        fileUrl = "sdaflkajsf",
+        fileSize = 114629,
+        metaDuration = 0,
+        originUrl = "adfadjsalfjalkfaklfja",
+    )
+    Log.d(tag, "parObj = $parObj")
+
+    val parcel = Parcel.obtain();
+    parcel.setDataPosition(0);//设置写的位置从0开始
+    parObj.writeToParcel(parcel, 0);
+    val bytes = parcel.marshall()
+
+    parcel.unmarshall(bytes, 0, bytes.size);
+    parcel.setDataPosition(0);
+    val parObj2 = Attachment(parcel)
+    val exampaperZipVersion = parObj2.exampaperZipVersion;
+    Log.d(tag, "parObj2 = $parObj2, exampaperZipVersion = $exampaperZipVersion")
+    parcel.recycle();
+}
+
+private fun testAttachmentProblem() {
+    val parObj = AttachmentProblem(
+        docId = "docId",
+        attachmentPurpose = true,
+        exampaperEinkMakeFlag = 1,
+        exampaperZipUrl = "fasdfksadfjlaf",
+//        exampaperZipVersion = 1655445217000,
+        exampaperZipVersion = 100,
+        extName = "pdf",
+        fileId = "3920239203922",
+        taskAttachmentId = "1058479044440215552",
+        thirdExampaperId = "",
+        type = "doc",
+        updateDatetime = null,
+        convertStatus = 1,
+        coverUrl = "dfasfkjalfsalkfj",
+        docName = "fdsafkalfjakf",
+        docType = 13,
+        fileExtendName = "pdf",
+        fileUrl = "sdaflkajsf",
+        fileSize = 114629,
+        metaDuration = 0,
+        originUrl = "adfadjsalfjalkfaklfja",
+    )
+    Log.d(tag, "parObj = $parObj")
+
+    val parcel = Parcel.obtain();
+    parcel.setDataPosition(0);//设置写的位置从0开始
+    parObj.writeToParcel(parcel, 0);
+    val bytes = parcel.marshall()
+
+    parcel.unmarshall(bytes, 0, bytes.size)
+    parcel.setDataPosition(0);
+    val parObj2 = AttachmentProblem(parcel)
+    val exampaperZipVersion = parObj2.exampaperZipVersion
+    Log.d(tag, "parObj2 = $parObj2, exampaperZipVersion = $exampaperZipVersion")
+    parcel.recycle();
 }
 
 /**
@@ -96,13 +180,8 @@ private fun testBaseParcelDiffObj() {
     val parcel2 = Parcel.obtain();
     parcel2.unmarshall(bytes, 0, bytes.size);
     parcel2.setDataPosition(0);
-    try {
-        val parObj2 = ParcelableObjectDiffObj(parcel2);
-        Log.d(tag, "parObj2 = $parObj2")
-    } catch (e: Throwable) {
-        Log.e("xxx", "eeee = $e");
-    }
-
+    val parObj2 = ParcelableObjectDiffObj(parcel2);
+    Log.d(tag, "parObj2 = $parObj2")
     parcel2.recycle();
 }
 
@@ -228,29 +307,25 @@ class ParcelableObjectSameObj() : Parcelable {
 /**
  * 添加属性
  */
-class ParcelableObjectDiffObj(var age:Int) : Parcelable {
+class ParcelableObjectDiffObj(var age:Int, var grade: Int?) : Parcelable {
 //    var age: Int = 0;
     var name: String? = "";
     var school: String? = ""
-    var grade: Int = 0
+//    var grade: Int? = 0
     var book: Book? = null
-    var cookies: List<String> = arrayListOf()
 
-//    constructor(parcel: Parcel) : this(parcel.readInt(), parcel.readValue(Int.javaClass.classLoader) as? Int)
+    constructor(parcel: Parcel) : this(parcel.readInt(), parcel.readValue(Int.javaClass.classLoader) as? Int)
 
-    constructor(parcel: Parcel) : this(10) {
-        this.age = parcel.readInt()
-        /// crash
+//    constructor(parcel: Parcel) : this() {
+//        this.age = parcel.readInt()
+//        /// crash
 //        this.grade = parcel.readValue(Int.javaClass.classLoader) as Int
-
-        /// 2022-05-27 16:53:11.153 11012-11012/com.example.channelDemo2 E/xxx: eeee = java.lang.RuntimeException: Parcel android.os.Parcel@474dbac: Unmarshalling unknown type code 6357102 at offset 8
-        parcel.readList(cookies, Int.javaClass.classLoader)
-
-//        this.book = parcel.readParcelable(Book.javaClass.classLoader)
-//        this.grade = parcel.readInt()
-//        this.name = parcel.readString()
-//        this.school = parcel.readString()
-    }
+//
+////        this.book = parcel.readParcelable(Book.javaClass.classLoader)
+////        this.grade = parcel.readInt()
+////        this.name = parcel.readString()
+////        this.school = parcel.readString()
+//    }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(age)
