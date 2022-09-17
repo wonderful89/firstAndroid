@@ -2,6 +2,7 @@ package com.example.firstAndroid.functions.util
 
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
@@ -15,15 +16,12 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.FileNotFoundException
 import java.io.IOException
-import java.text.SimpleDateFormat
-import java.util.*
 
 //import kotlinx.android.synthetic.main.activity_test_list.*
 
 class UtilTestActivity : BaseActivity() {
     companion object{
         const val tag = "UtilTestList"
-        private const val REQUEST_CAMERA_2 = 2
     }
 
     private lateinit var binding: ActivityTestListBinding
@@ -51,44 +49,11 @@ class UtilTestActivity : BaseActivity() {
 //            startActivity(intent)
             when(lists[position]) {
                 "相机测试" -> {
-                    openCamera()
+                    val intent = Intent(this, CameraTestActivity::class.java)
+                    startActivity(intent)
                 }
                 else -> {
 
-                }
-            }
-        }
-    }
-
-    private fun openCamera() {
-        val intent = Intent()
-        intent.action = MediaStore.ACTION_IMAGE_CAPTURE
-//        val imageFileUri = Uri.fromFile(getOutFile(TYPE_FILE_IMAGE));  //getOutFileUri(TYPE_FILE_IMAGE) //得到一个File Uri
-
-        Log.e(tag, "cameraImagePath = $cameraImagePath")
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, File(cameraImagePath))
-        startActivityForResult(intent, REQUEST_CAMERA_2)
-    }
-
-    private val cameraImagePath get() = FileConstants.APP_PATH + "/image1.png"
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK) { // 如果返回数据
-             if (requestCode == REQUEST_CAMERA_2) {
-                var fis: FileInputStream? = null
-                try {
-                    fis = FileInputStream(cameraImagePath) // 根据路径获取数据
-                    val bitmap = BitmapFactory.decodeStream(fis)
-//                    ivShowPicture.setImageBitmap(bitmap) // 显示图片
-                } catch (e: FileNotFoundException) {
-                    e.printStackTrace()
-                } finally {
-                    try {
-                        fis?.close() // 关闭流
-                    } catch (e: IOException) {
-                        e.printStackTrace()
-                    }
                 }
             }
         }
