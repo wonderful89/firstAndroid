@@ -9,6 +9,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.FileProvider
 import com.example.firstAndroid.R
 import com.example.firstAndroid.base.BaseActivity
 import com.example.firstAndroid.base.utils.FileConstants
@@ -62,7 +63,14 @@ class CameraTestActivity : BaseActivity() {
 
 //        val mFilePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/picture.png";
         Log.e(UtilTestActivity.tag, "cameraImagePath = $cameraImagePath")
-        val uri = Uri.fromFile(File(cameraImagePath))
+//        val uri = Uri.fromFile(File(cameraImagePath))
+
+        val imageFile = File(cameraImagePath)
+        val uri: Uri = FileProvider.getUriForFile(
+            this,
+            "com.example.firstAndroid.provider1",  //(use your app signature + ".provider" )
+            imageFile
+        )
         intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
         startActivityForResult(intent, REQUEST_CAMERA_2)
     }

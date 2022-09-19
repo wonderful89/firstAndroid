@@ -126,6 +126,15 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.firstAndroid.provider1"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider1_file_paths" />
+        </provider>
     </application>
 
 </manifest>

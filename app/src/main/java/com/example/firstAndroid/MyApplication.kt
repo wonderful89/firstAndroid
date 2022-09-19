@@ -53,7 +53,7 @@ class MyApplication : DaggerApplication() {
         }
         ARouter.init(this) // 尽可能早，推荐在Application中初始化
         FileConstants.init()
-        initVmPolicy()
+//        initVmPolicy()
     }
 
     private fun initVmPolicy(){
