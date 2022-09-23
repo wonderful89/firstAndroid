@@ -6,6 +6,7 @@ import android.util.Log
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.firstAndroid.base.ActivityLifecycleCallbacksImpl
 import com.example.firstAndroid.base.utils.FileConstants
+import com.example.firstAndroid.functions.logic.download.DownloadManagerWrap
 import com.qqz.baselib.QZBaseLib
 import com.tencent.bugly.Bugly
 import com.tencent.bugly.beta.Beta
@@ -42,6 +43,7 @@ class MyApplication : DaggerApplication() {
         this.registerActivityLifecycleCallbacks(mActivityLifecycleCallbacks)
         QZBaseLib.printResolution(this)
         QZBaseLib.initWithApp(this)
+        DownloadManagerWrap.appContext = this
     }
 
     private fun initSync(){
