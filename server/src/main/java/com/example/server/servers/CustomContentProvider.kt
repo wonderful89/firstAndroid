@@ -15,6 +15,11 @@ class CustomContentProvider : ContentProvider() {
 //        private const val authority = "com.example.server.custom.provider"
         const val windowName = ".servers.CustomContentProvider"
 
+        /**
+         * 如果在新进程中，则这个值不会被修改。
+         */
+        var testName = "original"
+
     }
 
     init {
@@ -42,7 +47,7 @@ class CustomContentProvider : ContentProvider() {
         Log.d(tag, "current rows: ${window.numRows}")
         window.putString("userValue11", 0, 0)
         window.putString("tokenValue11", 0, 1)
-        window.putString("baseUrlValue11", 0, 2)
+        window.putString("$testName", 0, 2)
         return CustomWindowedCursor(window)
     }
 

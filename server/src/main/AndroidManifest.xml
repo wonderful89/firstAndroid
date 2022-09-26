@@ -23,6 +23,7 @@
             android:authorities="com.example.server.custom.provider"
             android:name=".servers.CustomContentProvider"
             android:exported="true"
+            android:process=":customprovider"
             android:enabled="true" />
 
         <provider

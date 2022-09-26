@@ -8,6 +8,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.server.databinding.ActivityMainBinding
+import com.example.server.servers.CustomContentProvider
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,5 +30,7 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        CustomContentProvider.testName = "change to new value"
     }
 }
