@@ -2,11 +2,13 @@ package com.example.server.servers
 
 import android.content.ContentProvider
 import android.content.ContentValues
+import android.content.Context
 import android.database.AbstractWindowedCursor
 import android.database.Cursor
 import android.database.CursorWindow
 import android.net.Uri
 import android.util.Log
+import com.example.server.util.ProcessUtil
 
 class CustomContentProvider : ContentProvider() {
 
@@ -22,12 +24,15 @@ class CustomContentProvider : ContentProvider() {
 
     }
 
+    var currentContext: Context? = null
+
     init {
 
     }
 
     override fun onCreate(): Boolean {
         Log.d(tag, "onCreate 当前线程: " + Thread.currentThread().name)
+        currentContext = context
         return false
     }
 
@@ -38,6 +43,7 @@ class CustomContentProvider : ContentProvider() {
         p3: Array<out String>?,
         p4: String?
     ): Cursor {
+        ProcessUtil.getProcessListInfo(currentContext!!)
         Log.d(tag, "query 当前线程: " + Thread.currentThread().name)
         val window = CursorWindow(windowName)
         // 必须先要设置每一行有多少列才能往里面添加数据

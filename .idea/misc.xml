@@ -10,17 +10,18 @@
       <map>
         <entry key="../../../../../../layout/custom_preview.xml" value="0.47760416666666666" />
         <entry key="../../../../../layout/custom_preview.xml" value="0.16979166666666667" />
-        <entry key="app/src/main/res/drawable/bg_c_stroke_border_1dp_d.xml" value="0.199" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.168" />
         <entry key="app/src/main/res/drawable/heart_beat_anim.xml" value="0.5098958333333333" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.168" />
         <entry key="app/src/main/res/drawable/layout_test_corner.xml" value="0.4359375" />
-        <entry key="app/src/main/res/drawable/listview_selector2.xml" value="0.4075" />
         <entry key="app/src/main/res/drawable/listview_selector_0.xml" value="0.5098958333333333" />
         <entry key="app/src/main/res/layout/activity/activity_custom_view.xml" value="0.2074468085106383" />
         <entry key="app/src/main/res/layout/activity/layout/activity_custom_view.xml" value="0.3894927536231884" />
-        <entry key="app/src/main/res/layout/activity_content_provider_test.xml" value="0.4071557971014493" />
+        <entry key="app/src/main/res/layout/activity_camera_test.xml" value="0.2848731884057971" />
+        <entry key="app/src/main/res/layout/activity_content_provider_test.xml" value="0.2617753623188406" />
         <entry key="app/src/main/res/layout/activity_custom_view.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_dagger1.xml" value="0.34782608695652173" />
-        <entry key="app/src/main/res/layout/activity_download_manager.xml" value="0.2421875" />
+        <entry key="app/src/main/res/layout/activity_download_manager.xml" value="0.2586050724637681" />
         <entry key="app/src/main/res/layout/activity_layout_test1.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_layout_test2.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_list_view_1.xml" value="0.3894927536231884" />
@@ -47,9 +48,7 @@
         <entry key="app/src/main/res/layout/test_constraint_view_1.xml" value="0.3917572463768116" />
         <entry key="app/src/main/res/layout/toast_layout.xml" value="0.36432160804020103" />
         <entry key="app/src/main/res/layout/view_custom_test_1.xml" value="0.36432160804020103" />
-        <entry key="app/src/main/res/layout/view_download_task_item.xml" value="0.2188449848024316" />
-        <entry key="server/src/main/res/layout/activity_main.xml" value="0.38315217391304346" />
-        <entry key="server/src/main/res/menu/bottom_nav_menu.xml" value="0.3277777777777778" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.168" />
       </map>
     </option>
   </component>
@@ -63,5 +62,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
   </component>
 </project>

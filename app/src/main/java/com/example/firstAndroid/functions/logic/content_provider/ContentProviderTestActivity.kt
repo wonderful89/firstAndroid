@@ -55,9 +55,8 @@ class ContentProviderTestActivity : BaseActivity() {
             cursor.close()
         }
 
-        findViewById<View>(R.id.queryActionBook).setOnClickListener {
-            Log.d(tag, "queryActionBook click")
-
+        findViewById<View>(R.id.queryActionDeviceInfo).setOnClickListener {
+            Log.d(tag, "queryActionDeviceInfo click")
             val contentResolver = Utils.getApp().contentResolver
             val cursor = contentResolver.query(Uri.parse("content://com.example.server.device_info.provider"), null, null, null, null)
             if (cursor == null) {
@@ -69,6 +68,48 @@ class ContentProviderTestActivity : BaseActivity() {
             val deviceId = cursor!!.getString(cursor!!.getColumnIndex("deviceId"))
 
             val msg = "deviceId = $deviceId, "
+            Log.i(tag, "$msg")
+            ToastUtils.showShort(msg)
+            cursor!!.close()
+        }
+
+        findViewById<View>(R.id.queryActionBook).setOnClickListener {
+            Log.d(tag, "queryActionBook click")
+
+            val contentResolver = Utils.getApp().contentResolver
+            val cursor = contentResolver.query(Uri.parse("content://com.example.server.book.provider/book"), null, null, null, null)
+            if (cursor == null) {
+                Log.i(tag, "cursor is null")
+                ToastUtils.showShort("cursor is null")
+                return@setOnClickListener
+            }
+            val nameList = mutableListOf<String>()
+            while (cursor!!.moveToNext()) {
+                val bookName = cursor!!.getString(cursor!!.getColumnIndex("name"))
+                nameList.add(bookName)
+            }
+            val msg = "nameList = $nameList "
+            Log.i(tag, "$msg")
+            ToastUtils.showShort(msg)
+            cursor!!.close()
+        }
+
+        findViewById<View>(R.id.queryActionUser).setOnClickListener {
+            Log.d(tag, "queryActionUser click")
+
+            val contentResolver = Utils.getApp().contentResolver
+            val cursor = contentResolver.query(Uri.parse("content://com.example.server.book.provider/user"), null, null, null, null)
+            if (cursor == null) {
+                Log.i(tag, "cursor is null")
+                ToastUtils.showShort("cursor is null")
+                return@setOnClickListener
+            }
+            val nameList = mutableListOf<String>()
+            while (cursor!!.moveToNext()) {
+                val bookName = cursor!!.getString(cursor!!.getColumnIndex("name"))
+                nameList.add(bookName)
+            }
+            val msg = "nameList = $nameList "
             Log.i(tag, "$msg")
             ToastUtils.showShort(msg)
             cursor!!.close()

@@ -3,16 +3,18 @@
     package="com.example.server">
 
     <application
+        android:name=".ServerApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:label="@string/app_name"
         android:theme="@style/Theme.FirstAndroid">
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,6 +31,12 @@
         <provider
             android:authorities="com.example.server.device_info.provider"
             android:name=".servers.DeviceInfoProvider"
+            android:exported="true"
+            android:enabled="true" />
+
+        <provider
+            android:authorities="com.example.server.book.provider"
+            android:name=".servers.BookContentProvider"
             android:exported="true"
             android:enabled="true" />
     </application>

@@ -14,13 +14,13 @@ import android.util.Log
 class BookContentProvider: ContentProvider() {
     private val TAG = "BookContentProvider "
 
-    val AUTHORITY = "org.example.server" // 与AndroidManifest保持一致
+    val AUTHORITY = "com.example.server.book.provider" // 与AndroidManifest保持一致
 
     val BOOK_CONTENT_URI = Uri.parse("content://$AUTHORITY/book")
     val USER_CONTENT_URI = Uri.parse("content://$AUTHORITY/user")
 
-    val BOOK_URI_CODE = 0
-    val USER_URI_CODE = 1
+    private val BOOK_URI_CODE = 0
+    private val USER_URI_CODE = 1
 
     private val sUriMatcher = UriMatcher(UriMatcher.NO_MATCH)
 
@@ -29,19 +29,13 @@ class BookContentProvider: ContentProvider() {
         sUriMatcher.addURI(AUTHORITY, "user", USER_URI_CODE)
     }
 
-//    // 关联Uri和Uri_Code
-//    static
-//    {
-//        sUriMatcher.addURI(AUTHORITY, "book", BOOK_URI_CODE)
-//        sUriMatcher.addURI(AUTHORITY, "user", USER_URI_CODE)
-//    }
-
     private var mContext: Context? = null
     private var mDb: SQLiteDatabase? = null
 
     override fun onCreate(): Boolean {
         showLogs("onCreate 当前线程: " + Thread.currentThread().name)
         mContext = context
+
         initProviderData() // 初始化Provider数据
         return false
     }

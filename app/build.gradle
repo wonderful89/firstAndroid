@@ -63,30 +63,30 @@ android {
     /// 不同渠道包
     productFlavors {
 
-        finalProduction {
+        channel1 {
             dimension "default"
             applicationId "com.example.channel1"
-            resValue "string", "app_name", "App P"
+            resValue "string", "app_name", "Channel1"
         }
 
-        demoProduction {
+        demo {
             dimension "default"
-            applicationId "com.example.channelDemo2"
-            resValue "string", "app_name", "App Demo P"
+            applicationId "com.example.firstAndroid"
+            resValue "string", "app_name", "FirstAndroid"
         }
 
-        demoTesting {
-            dimension "default"
-            applicationId "com.example.channelTest"
-            resValue "string", "app_name", "App Demo T"
-        }
-
-
-        mock {
-            dimension "default"
-            applicationId "com.example.channelMock"
-            resValue "string", "app_name", "App Mock"
-        }
+//        demoTesting {
+//            dimension "default"
+//            applicationId "com.example.channelTest"
+//            resValue "string", "app_name", "ChannelTest"
+//        }
+//
+//
+//        mock {
+//            dimension "default"
+//            applicationId "com.example.channelMock"
+//            resValue "string", "app_name", "App Mock"
+//        }
     }
 
     lintOptions {

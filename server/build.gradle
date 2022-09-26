@@ -22,6 +22,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "default"
+    productFlavors {
+        channel1 {
+            dimension "default"
+            applicationId "com.example.server"
+//            resValue "string", "app_name", "FirstAndroidServer"
+        }
+
+        demo {
+            dimension "default"
+            applicationId "com.example.server"
+//            resValue "string", "app_name", "FirstAndroidServer"
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

@@ -27,7 +27,13 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/queryActionBook"
             android:layout_width="match_parent"
-            android:text="queryBook"
+            android:text="query Book"
+            android:layout_height="40dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/queryActionUser"
+            android:layout_width="match_parent"
+            android:text="query User"
             android:layout_height="40dp" />
 
         <androidx.appcompat.widget.AppCompatButton
