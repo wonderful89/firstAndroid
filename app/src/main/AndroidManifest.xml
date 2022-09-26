@@ -24,6 +24,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".functions.logic.content_provider.ContentProviderTestActivity"
+            android:exported="false" />
+        <activity
             android:name=".functions.logic.download.DownloadManagerActivity"
             android:exported="false" />
         <activity
@@ -72,9 +75,9 @@
         <activity android:name=".functions.ui.layout_test_1.LayoutTest2Activity" />
         <activity
             android:name=".TestListActivity"
+            android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme"
-            android:exported="true">
+            android:theme="@style/AppTheme">
 
             <!-- 该Activity是该应用的启动入口页面，它会被储存在系统的launcher列表中 -->
             <intent-filter>

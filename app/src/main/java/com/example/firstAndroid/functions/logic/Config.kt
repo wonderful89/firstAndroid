@@ -6,6 +6,7 @@ enum class LogicTest(val title: String, val content: String = "", val path: Stri
     Storage("存储测试",path = "/logic/storage"),
     Reflect("反射测试",path = "/logic/reflect"),
     DownloadManager("下载测试",path = "/logic/download"),
+    ContentProvider("ContentProvider",path = "/logic/contentProvider"),
     ReactiveX("ReactiveX", path = "/logic/reactivex"),
     OtherPureFunction("OtherPureFunction", path = "/logic/pureFunction"),
 }
