@@ -12,11 +12,9 @@ class CustomContentProvider : ContentProvider() {
 
     companion object {
         const val tag = "CustomContentProvider"
-        private const val authority = "com.example.server"
+//        private const val authority = "com.example.server.custom.provider"
         const val windowName = ".servers.CustomContentProvider"
 
-
-        public val tokenUri = Uri.parse("content://$authority")
     }
 
     init {
@@ -24,6 +22,7 @@ class CustomContentProvider : ContentProvider() {
     }
 
     override fun onCreate(): Boolean {
+        Log.d(tag, "onCreate 当前线程: " + Thread.currentThread().name)
         return false
     }
 
@@ -34,6 +33,7 @@ class CustomContentProvider : ContentProvider() {
         p3: Array<out String>?,
         p4: String?
     ): Cursor {
+        Log.d(tag, "query 当前线程: " + Thread.currentThread().name)
         val window = CursorWindow(windowName)
         // 必须先要设置每一行有多少列才能往里面添加数据
         window.setNumColumns(3)

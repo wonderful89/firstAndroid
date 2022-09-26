@@ -20,8 +20,14 @@
             </intent-filter>
         </activity>
         <provider
-            android:authorities="com.example.server"
+            android:authorities="com.example.server.custom.provider"
             android:name=".servers.CustomContentProvider"
+            android:exported="true"
+            android:enabled="true" />
+
+        <provider
+            android:authorities="com.example.server.device_info.provider"
+            android:name=".servers.DeviceInfoProvider"
             android:exported="true"
             android:enabled="true" />
     </application>

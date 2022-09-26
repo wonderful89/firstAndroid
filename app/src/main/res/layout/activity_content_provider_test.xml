@@ -19,6 +19,18 @@
             android:layout_height="40dp" />
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/queryActionDeviceInfo"
+            android:layout_width="match_parent"
+            android:text="query Device Info"
+            android:layout_height="40dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/queryActionBook"
+            android:layout_width="match_parent"
+            android:text="queryBook"
+            android:layout_height="40dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/insertAction"
             android:layout_width="match_parent"
             android:text="insert"

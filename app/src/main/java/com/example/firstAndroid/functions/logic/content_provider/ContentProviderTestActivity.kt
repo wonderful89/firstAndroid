@@ -23,8 +23,6 @@ object ProvidersKeys{
 class ContentProviderTestActivity : BaseActivity() {
 
     companion object {
-        public val tokenUri: Uri = Uri.parse("content://com.example.server")
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,27 +31,47 @@ class ContentProviderTestActivity : BaseActivity() {
         bindEvents()
     }
 
-    @SuppressLint("Range")
+    @SuppressLint("Range", "Recycle")
     private fun bindEvents() {
         findViewById<View>(R.id.queryAction).setOnClickListener {
             Log.d(tag, "queryAction click")
 
-            val cr = Utils.getApp().contentResolver
+            val contentResolver = Utils.getApp().contentResolver
             var cursor: Cursor? = null
 
-            cursor = cr.query(tokenUri, null, null, null, null)
+            cursor = contentResolver.query(Uri.parse("content://com.example.server.custom.provider"), null, null, null, null)
             if (cursor == null) {
                 Log.i(tag, "cursor is null")
                 ToastUtils.showShort("cursor is null")
                 return@setOnClickListener
             }
-            cursor!!.moveToFirst()
+            cursor.moveToFirst()
             val user = cursor.getString(cursor.getColumnIndex(ProvidersKeys.user))
             val token = cursor.getString(cursor.getColumnIndex(ProvidersKeys.token))
             val baseUrl = cursor.getString(cursor.getColumnIndex(ProvidersKeys.baseUrl))
 
             Log.i(tag, "user = $user, token = $token, baseUrl = $baseUrl")
             ToastUtils.showShort("user = $user, token = $token, baseUrl = $baseUrl")
+            cursor.close()
+        }
+
+        findViewById<View>(R.id.queryActionBook).setOnClickListener {
+            Log.d(tag, "queryActionBook click")
+
+            val contentResolver = Utils.getApp().contentResolver
+            val cursor = contentResolver.query(Uri.parse("content://com.example.server.device_info.provider"), null, null, null, null)
+            if (cursor == null) {
+                Log.i(tag, "cursor is null")
+                ToastUtils.showShort("cursor is null")
+                return@setOnClickListener
+            }
+            cursor!!.moveToFirst()
+            val deviceId = cursor!!.getString(cursor!!.getColumnIndex("deviceId"))
+
+            val msg = "deviceId = $deviceId, "
+            Log.i(tag, "$msg")
+            ToastUtils.showShort(msg)
+            cursor!!.close()
         }
     }
 }
