@@ -6,6 +6,9 @@ import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.os.Debug
+import android.os.Process
+import java.io.FileInputStream
+import java.io.IOException
 
 class ProcessInfo {
     var name: String? = null//进程的名字
@@ -57,9 +60,44 @@ object ProcessUtil {
         return processInfoList
     }
 
-    fun getCurrentProcessInfo(context: Context) : ProcessInfo?{
-        val list = getProcessListInfo(context)
-        val first = list?.firstOrNull { it.packageName == context.packageName }
-        return first
+    fun getProcessName(cxt: Context): String? {
+        val pid = Process.myPid()
+        val am = cxt.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val runningApps = am.runningAppProcesses ?: return null
+        for (procInfo in runningApps) {
+            if (procInfo.pid == pid) {
+                return procInfo.processName
+            }
+        }
+        return null
+    }
+
+    fun getProcessName2(): String? {
+        var `in`: FileInputStream? = null
+        try {
+            val fn = "/proc/self/cmdline"
+            `in` = FileInputStream(fn)
+            val buffer = ByteArray(256)
+            var len = 0
+            var b: Int
+            while (`in`.read().also { b = it } > 0 && len < buffer.size) {
+                buffer[len++] = b.toByte()
+            }
+            if (len > 0) {
+                val charset = Charsets.UTF_8
+                return String(buffer, 0, len, charset)
+            }
+        } catch (e: Throwable) {
+            e.printStackTrace()
+        } finally {
+            if (`in` != null) {
+                try {
+                    `in`.close()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+            }
+        }
+        return null
     }
 }

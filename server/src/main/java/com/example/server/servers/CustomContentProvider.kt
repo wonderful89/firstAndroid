@@ -43,8 +43,10 @@ class CustomContentProvider : ContentProvider() {
         p3: Array<out String>?,
         p4: String?
     ): Cursor {
-        ProcessUtil.getProcessListInfo(currentContext!!)
+//        ProcessUtil.getProcessListInfo(currentContext!!)
         Log.d(tag, "query 当前线程: " + Thread.currentThread().name)
+        Log.d(tag, "query 当前进程: " + ProcessUtil.getProcessName(currentContext!!))
+        Log.d(tag, "query 当前进程: " + ProcessUtil.getProcessName2())
         val window = CursorWindow(windowName)
         // 必须先要设置每一行有多少列才能往里面添加数据
         window.setNumColumns(3)
