@@ -114,5 +114,18 @@ class ContentProviderTestActivity : BaseActivity() {
             ToastUtils.showShort(msg)
             cursor!!.close()
         }
+
+        findViewById<View>(R.id.queryJiuXueDeviceId).setOnClickListener {
+            Log.d(tag, "queryJiuXueDeviceId click")
+
+            val contentResolver = Utils.getApp().contentResolver
+            val cursor = contentResolver.query(Uri.parse("content://com.tencent.landmoon.device_info.provider"), null, null, null, null)
+                ?: return@setOnClickListener
+            cursor!!.moveToFirst()
+            val deviceId = cursor!!.getString(cursor!!.getColumnIndex("deviceId"))
+
+            ToastUtils.showShort("deviceId = $deviceId")
+            cursor!!.close()
+        }
     }
 }

@@ -53,6 +53,12 @@
             android:layout_width="match_parent"
             android:text="delete"
             android:layout_height="40dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/queryJiuXueDeviceId"
+            android:layout_width="match_parent"
+            android:text="query JIuXue Id"
+            android:layout_height="40dp" />
     </LinearLayout>
 
 

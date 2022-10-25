@@ -24,6 +24,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".functions.logic.matrix.MatrixTestActivity"
+            android:exported="false" />
+        <activity
             android:name=".functions.logic.content_provider.ContentProviderTestActivity"
             android:exported="false" />
         <activity

@@ -21,6 +21,14 @@ kapt {
 }
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('../docs/signed')
+            storePassword 'firstA'
+            keyAlias 'firstA'
+            keyPassword 'firstA'
+        }
+    }
     compileSdkVersion 31
     buildToolsVersion "29.0.2"
 //    dataBinding.enabled = true
@@ -45,7 +53,20 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            applicationVariants.all { variant ->
+                variant.outputs.all { output ->
+                    def createTime = new Date().format("YYYYMMdd_HH_mm", TimeZone.getTimeZone("GMT+08:00"))
+                    def name = output.outputFile.name, ext = "";
+                    def dotIndex = name.indexOf(".")
+                    if(dotIndex != -1) {
+                        ext = name.substring(dotIndex);
+                        name = name.substring(0, dotIndex)
+                    }
+                    outputFileName = name + "_" + defaultConfig.versionName+"_"+ defaultConfig.versionCode+ "_" + createTime + ext;
+
+                }
+            }
         }
 
         debug {    //这里
@@ -103,6 +124,13 @@ android {
         }
     }
 
+    packagingOptions {
+        pickFirst 'lib/armeabi-v7a/libc++_shared.so'
+        pickFirst 'lib/arm64-v8a/libc++_shared.so'
+        pickFirst 'lib/armeabi-v7a/libwechatbacktrace.so'
+        pickFirst 'lib/arm64-v8a/libwechatbacktrace.so'
+    }
+
     android {
         buildFeatures {
             dataBinding true
@@ -145,7 +173,7 @@ dependencies {
     implementation 'com.google.dagger:dagger:2.24'
 
 
-    implementation 'com.google.dagger:dagger-android:2.24'
+    implementation 'com.google.dagger:dagger-android:2.35.1'
     implementation 'com.google.dagger:dagger-android-support:2.24'
     kapt 'com.google.dagger:dagger-android-processor:2.24'
 
@@ -184,4 +212,23 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.1.1'
 
     implementation 'com.blankj:utilcodex:1.31.0'
+
+    implementation group: "com.tencent.matrix", name: "matrix-android-lib", version: MATRIX_VERSION, changing: true
+    implementation group: "com.tencent.matrix", name: "matrix-android-commons", version: MATRIX_VERSION, changing: true
+    implementation group: "com.tencent.matrix", name: "matrix-trace-canary", version: MATRIX_VERSION, changing: true
+    implementation group: "com.tencent.matrix", name: "matrix-resource-canary-android", version: MATRIX_VERSION, changing: true
+    implementation group: "com.tencent.matrix", name: "matrix-resource-canary-common", version: MATRIX_VERSION, changing: true
+    implementation group: "com.tencent.matrix", name: "matrix-io-canary", version: MATRIX_VERSION, changing: true
+    implementation group: "com.tencent.matrix", name: "matrix-sqlite-lint-android-sdk", version: MATRIX_VERSION, changing: true
+    implementation group: "com.tencent.matrix", name: "matrix-battery-canary", version: MATRIX_VERSION, changing: true
+    implementation group: "com.tencent.matrix", name: "matrix-hooks", version: MATRIX_VERSION, changing: true
+}
+
+apply plugin: 'com.tencent.matrix-plugin'
+matrix {
+    trace {
+        enable = true	//if you don't want to use trace canary, set false
+        baseMethodMapFile = "${project.buildDir}/matrix_output/Debug.methodmap"
+        blackListFile = "${project.projectDir}/matrixTrace/blackMethodList.txt"
+    }
 }
