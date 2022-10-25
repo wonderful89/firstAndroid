@@ -11,7 +11,14 @@ import java.lang.ref.ReferenceQueue
 import java.lang.ref.WeakReference
 import java.util.*
 
+class WeakRefTT{
+    var s = ""
+    var b = ""
+}
+
 object WeakRef {
+
+
 
     fun myGc() {
         Runtime.getRuntime().gc()
@@ -19,15 +26,15 @@ object WeakRef {
     }
 
     fun test() {
-//        testWeakRef()
+        testWeakRef()
 //        testWeakRef2()
-        JavaDemo.mainDDD()
+//        JavaDemo.mainDDD()
 //        testWeakRef3()
     }
 
     private fun testWeakRef() {
         // 创建一个对象
-        var obj: Any? = Any()
+        var obj: Any? = WeakRefTT()
         // 创建一个弱引用，并指向这个对象，并且将引用队列传递给弱引用
         val reference: WeakReference<Any> = WeakReference(obj)
         // 打印出这个弱引用，为了跟gc之后queue里面的对比证明是同一

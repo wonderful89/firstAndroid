@@ -27,6 +27,7 @@ import java.util.*
 class LogicListActivity : BaseActivity() {
     companion object {
         const val tag = "LogicTestList"
+        val testWeakArray = mutableListOf<LogicListActivity>()
     }
 
     private lateinit var binding: ActivityTestListBinding
@@ -36,6 +37,8 @@ class LogicListActivity : BaseActivity() {
 //        setContentView(R.layout.activity_test_list)
         binding = ActivityTestListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+//        testWeakArray.add(this)
 
         val lists = LogicTest.values().map { item -> item.title }
         val arrayAdapter2 = ArrayAdapter(this, R.layout.item_simple_list_0, lists)

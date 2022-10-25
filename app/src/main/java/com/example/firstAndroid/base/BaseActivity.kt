@@ -1,13 +1,15 @@
 package com.example.firstAndroid.base
 
 import android.app.Activity
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.LogUtils
-import com.example.firstAndroid.functions.logic.download.downloader.Observer
 import com.example.firstAndroid.functions.logic.purefunction.WeakRef
+import com.tencent.matrix.resource.config.ResourceConfig
+import com.tencent.matrix.resource.watcher.ActivityRefWatcher
+import com.tencent.matrix.util.MatrixLog
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -18,10 +20,10 @@ import java.util.*
 import java.util.logging.Logger
 import javax.inject.Inject
 
-
 object ReferenceObjWrap {
     var queue: ReferenceQueue<Any> = ReferenceQueue()
     var weakHashMap = WeakHashMap<Activity, String>()
+    var reference: WeakReference<Any>? = null
     private var queueLooper = false
 
     fun startLoop() {
@@ -29,6 +31,37 @@ object ReferenceObjWrap {
             queueLooper = true
             iteratorCall()
         }
+    }
+
+    private fun triggerGc() {
+        val current = System.currentTimeMillis()
+        MatrixLog.v("TAG", "triggering gc...")
+        Runtime.getRuntime().gc()
+        try {
+            Thread.sleep(100)
+        } catch (e: InterruptedException) {
+//            LogUtils.printErrStackTrace(ActivityRefWatcher.TAG, e, "")
+        }
+        Runtime.getRuntime().runFinalization()
+        LogUtils.v("TAG", "gc was triggered.")
+    }
+
+    fun testRef1(obj: Any) {
+        reference = WeakReference(obj)
+        println("111 ${reference!!.get()}")
+        WeakRef.myGc()
+        triggerGc()
+
+        Thread.sleep(3000)
+        println("111 222 ${reference!!.get()}")
+        printLoop2()
+    }
+
+    private fun printLoop2() {
+        Handler(Looper.getMainLooper()).postDelayed({
+            println("111 333 ${reference!!.get()}")
+            printLoop2()
+        }, 2000)
     }
 
     private fun printlnQueue(tag: String) {
@@ -101,7 +134,11 @@ abstract class BaseActivity : AppCompatActivity(), HasAndroidInjector {
         if (testRef) {
             ReferenceObjWrap.startLoop()
             ReferenceObjWrap.enqueue(this)
+
+            ReferenceObjWrap.testRef1(this)
         }
+
+//        ReferenceObjWrap.testRef1(this)
     }
 
 
