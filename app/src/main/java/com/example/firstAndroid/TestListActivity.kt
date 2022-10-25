@@ -1,10 +1,11 @@
 package com.example.firstAndroid
 //import android.R as R2
 //import com.example.firstAndroid.R as R
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
@@ -21,6 +22,7 @@ import com.qqz.baselib.QZBaseTool
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import kotlin.reflect.KClass
 
 class TestListActivity : BaseActivity(), LifecycleObserver{
     companion object {
@@ -60,7 +62,7 @@ class TestListActivity : BaseActivity(), LifecycleObserver{
             val selectedItem = adapterView.getItemAtPosition(position)
             Log.w(tag, "view = $view")
             Log.w(tag, "selectItem = $selectedItem")
-            var intentActivity: AppCompatActivity? = null
+
             when(position) {
                 MainTest.DensitySetting.ordinal -> {
 //                    QZBaseLib.setDensityDpi(200)
@@ -69,15 +71,16 @@ class TestListActivity : BaseActivity(), LifecycleObserver{
                     return@setOnItemClickListener
                 }
             }
-            intentActivity = when (position) {
-                MainTest.UI.ordinal -> UITestListActivity()
-                MainTest.Logic.ordinal -> LogicListActivity()
-                MainTest.Util.ordinal -> UtilTestActivity()
-                MainTest.Component.ordinal -> ComponentActivity()
-                MainTest.OriginMain.ordinal -> MainActivity()
-                else -> MainActivity()
+//            var intentClass: KClass<Any>? = null
+            val intentClass = when (position) {
+                MainTest.UI.ordinal ->  UITestListActivity::class.java
+                MainTest.Logic.ordinal -> LogicListActivity::class.java
+                MainTest.Util.ordinal -> UtilTestActivity::class.java
+                MainTest.Component.ordinal -> ComponentActivity::class.java
+                MainTest.OriginMain.ordinal -> MainActivity::class.java
+                else -> MainActivity::class.java
             }
-            val intent = android.content.Intent(this, intentActivity.javaClass)
+            val intent = Intent(this, intentClass)
             startActivity(intent)
         }
     }
