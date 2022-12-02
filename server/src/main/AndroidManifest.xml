@@ -39,6 +39,18 @@
             android:name=".servers.BookContentProvider"
             android:exported="true"
             android:enabled="true" />
+
+        <service android:name=".servers.TestService" android:exported="true" android:enabled="true">
+
+        </service>
+
+        <service android:name=".servers.PersionService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.server.PersionService"/>
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

@@ -16,49 +16,98 @@
             android:id="@+id/queryAction"
             android:layout_width="match_parent"
             android:text="query"
+            android:textAllCaps="false"
             android:layout_height="40dp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/queryActionDeviceInfo"
             android:layout_width="match_parent"
             android:text="query Device Info"
+            android:textAllCaps="false"
             android:layout_height="40dp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/queryActionBook"
             android:layout_width="match_parent"
             android:text="query Book"
+            android:textAllCaps="false"
             android:layout_height="40dp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/queryActionUser"
             android:layout_width="match_parent"
             android:text="query User"
+            android:textAllCaps="false"
             android:layout_height="40dp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/insertAction"
             android:layout_width="match_parent"
             android:text="insert"
+            android:textAllCaps="false"
             android:layout_height="40dp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/updateAction"
             android:layout_width="match_parent"
             android:text="update"
+            android:textAllCaps="false"
             android:layout_height="40dp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/deleteAction"
             android:layout_width="match_parent"
             android:text="delete"
+            android:textAllCaps="false"
             android:layout_height="40dp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/queryJiuXueDeviceId"
             android:layout_width="match_parent"
             android:text="query JIuXue Id"
+            android:textAllCaps="false"
             android:layout_height="40dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/gray_600"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bindPersonService"
+            android:layout_width="match_parent"
+            android:text="bindPersonService"
+            android:textAllCaps="false"
+            android:layout_height="40dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/unbindPersonService"
+            android:layout_width="match_parent"
+            android:text="unbindPersonService"
+            android:textAllCaps="false"
+            android:layout_height="40dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/eatFoot"
+            android:layout_width="match_parent"
+            android:text="eatFoot"
+            android:textAllCaps="false"
+            android:layout_height="40dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/startPersonService"
+            android:layout_width="match_parent"
+            android:text="startPersonService"
+            android:textAllCaps="false"
+            android:layout_height="40dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/stopPersonService"
+            android:layout_width="match_parent"
+            android:text="stopPersonService"
+            android:textAllCaps="false"
+            android:layout_height="40dp" />
+
     </LinearLayout>
 
 

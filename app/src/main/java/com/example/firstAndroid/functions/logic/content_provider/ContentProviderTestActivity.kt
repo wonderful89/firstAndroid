@@ -1,10 +1,14 @@
 package com.example.firstAndroid.functions.logic.content_provider
 
 import android.annotation.SuppressLint
+import android.content.ComponentName
+import android.content.Intent
+import android.content.ServiceConnection
 import android.database.Cursor
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.IBinder
+import android.os.RemoteException
 import android.util.Log
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -12,6 +16,10 @@ import com.blankj.utilcode.util.ToastUtils
 import com.blankj.utilcode.util.Utils
 import com.example.firstAndroid.R
 import com.example.firstAndroid.base.BaseActivity
+import com.qqz.baselib.IPerson
+
+
+
 
 object ProvidersKeys{
     const val user = "user"
@@ -23,6 +31,19 @@ object ProvidersKeys{
 class ContentProviderTestActivity : BaseActivity() {
 
     companion object {
+    }
+
+    private var mService: IPerson? = null
+    private val mConnection: ServiceConnection = object : ServiceConnection {
+        override fun onServiceConnected(componentName: ComponentName?, iBinder: IBinder?) { //绑定Service成功后执行
+            Log.d(tag, "onServiceConnected")
+            mService = IPerson.Stub.asInterface(iBinder) //获取远程服务的代理对象，一个IBinder对象
+        }
+
+        override fun onServiceDisconnected(componentName: ComponentName?) {
+            Log.d(tag, "onServiceDisconnected")
+            mService = null
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -126,6 +147,42 @@ class ContentProviderTestActivity : BaseActivity() {
 
             ToastUtils.showShort("deviceId = $deviceId")
             cursor!!.close()
+        }
+
+        val persionServiceIntent = Intent().apply {
+            setAction("com.example.server.PersionService")
+            setPackage("com.example.server")
+        }
+
+        findViewById<View>(R.id.bindPersonService).setOnClickListener {
+            Log.d(tag, "bindPersonService click")
+            bindService(persionServiceIntent, mConnection, BIND_AUTO_CREATE)
+        }
+
+        findViewById<View>(R.id.unbindPersonService).setOnClickListener {
+            Log.d(tag, "unbindPersonService click")
+            mService?.let {
+                unbindService(mConnection)
+            }
+        }
+
+        findViewById<View>(R.id.startPersonService).setOnClickListener {
+            Log.d(tag, "startPersonService click")
+            startService(persionServiceIntent)
+        }
+        findViewById<View>(R.id.stopPersonService).setOnClickListener {
+            Log.d(tag, "stopPersonService click")
+            stopService(persionServiceIntent)
+        }
+        findViewById<View>(R.id.eatFoot).setOnClickListener {
+            Log.d(tag, "eatFoot click")
+            try {
+                val v1 = mService?.eat("banana")
+                val v2 = mService?.eat("water")
+                Log.e(tag, "v1 = $v1, v2 = $v2")
+            } catch (e: RemoteException) {
+                Log.e(tag, "eatFoot exception: $e")
+            }
         }
     }
 }
