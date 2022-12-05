@@ -12,4 +12,5 @@ enum class LogicTest(val title: String, val content: String = "", val path: Stri
     MatrixTest("MatrixTest", path = "/logic/matrix"),
     Hprof("Hprof dump", path = "/logic/Hprof"),
     TestWeakRef("WeakRef", path = "/logic/WeakRef"),
+    BindService("BindService", path = "/logic/BindService"),
 }

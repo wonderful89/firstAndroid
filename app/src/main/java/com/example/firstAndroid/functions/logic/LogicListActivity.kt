@@ -1,9 +1,9 @@
 package com.example.firstAndroid.functions.logic
 
-import android.os.Bundle
-import android.os.Debug
-import android.os.Handler
-import android.os.Looper
+import android.content.ComponentName
+import android.content.Intent
+import android.content.ServiceConnection
+import android.os.*
 import android.util.Log
 import android.widget.ArrayAdapter
 import com.alibaba.android.arouter.launcher.ARouter
@@ -16,6 +16,7 @@ import com.example.firstAndroid.databinding.ActivityTestListBinding
 import com.example.firstAndroid.functions.logic.purefunction.JavaDemo
 import com.example.firstAndroid.functions.logic.purefunction.WeakRef
 import com.example.firstAndroid.functions.logic.purefunction.entry
+import com.qqz.baselib.IPerson
 import java.lang.Exception
 import java.lang.ref.Reference
 import java.lang.ref.ReferenceQueue
@@ -32,6 +33,11 @@ class LogicListActivity : BaseActivity() {
 
     private lateinit var binding: ActivityTestListBinding
 
+    val persionServiceIntent = Intent().apply {
+        setAction("com.example.server.PersionService")
+        setPackage("com.example.server")
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_test_list)
@@ -39,6 +45,8 @@ class LogicListActivity : BaseActivity() {
         setContentView(binding.root)
 
 //        testWeakArray.add(this)
+
+        startService(persionServiceIntent)
 
         val lists = LogicTest.values().map { item -> item.title }
         val arrayAdapter2 = ArrayAdapter(this, R.layout.item_simple_list_0, lists)
@@ -69,11 +77,30 @@ class LogicListActivity : BaseActivity() {
                 WeakRef.test()
                 return@setOnItemClickListener
             }
+            if (intentName.contains("BindService")) {
+                bindService(persionServiceIntent, mConnection, BIND_AUTO_CREATE)
+                return@setOnItemClickListener
+            }
             ARouter.getInstance().build(intentName)
                 .withString("title", name)
                 .navigation()
 //            val intent = android.content.Intent(this, intentClass)
 //            startActivity(intent)
+        }
+    }
+
+    private val mConnection: ServiceConnection = object : ServiceConnection {
+        override fun onServiceConnected(
+            componentName: ComponentName?,
+            iBinder: IBinder?
+        ) { //绑定Service成功后执行
+            Log.d(BaseActivity.tag, "onServiceConnected")
+//            mService = IPerson.Stub.asInterface(iBinder) //获取远程服务的代理对象，一个IBinder对象
+        }
+
+        override fun onServiceDisconnected(componentName: ComponentName?) {
+            Log.d(BaseActivity.tag, "onServiceDisconnected")
+//            mService = null
         }
     }
 
