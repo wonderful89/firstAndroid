@@ -10,6 +10,7 @@ enum class LogicTest(val title: String, val content: String = "", val path: Stri
     ReactiveX("ReactiveX", path = "/logic/reactivex"),
     OtherPureFunction("OtherPureFunction", path = "/logic/pureFunction"),
     MatrixTest("MatrixTest", path = "/logic/matrix"),
+    HermesTest("hermesTest", path = "/logic/hermesTest"),
     Hprof("Hprof dump", path = "/logic/Hprof"),
     TestWeakRef("WeakRef", path = "/logic/WeakRef"),
     BindService("BindService", path = "/logic/BindService"),

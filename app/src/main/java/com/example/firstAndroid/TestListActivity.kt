@@ -22,6 +22,8 @@ import com.qqz.baselib.QZBaseTool
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import xiaofei.library.hermes.Hermes
+import javax.inject.Singleton
 import kotlin.reflect.KClass
 
 class TestListActivity : BaseActivity(), LifecycleObserver{
@@ -41,6 +43,11 @@ class TestListActivity : BaseActivity(), LifecycleObserver{
         Log.d(tag, "resumed")
     }
 
+    private fun testHermes() {
+        Hermes.init(this)
+        Hermes.register(com.example.firstAndroid.functions.logic.testHermes.Singleton::class.java)
+        com.example.firstAndroid.functions.logic.testHermes.Singleton.getInstance()?.setValue("111")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +56,7 @@ class TestListActivity : BaseActivity(), LifecycleObserver{
 //        setContentView(R.layout.activity_test_list)
         binding = ActivityTestListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        testHermes()
 
         val lists = MainTest.values().map { item -> item.title }
         val arrayAdapter2 = ArrayAdapter(this, R.layout.item_simple_list_0, lists)

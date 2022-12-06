@@ -24,6 +24,11 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".functions.logic.testHermes.HermesTestActivity"
+            android:exported="false"
+            android:process=":second"
+            />
+        <activity
             android:name=".functions.logic.matrix.MatrixTestActivity"
             android:exported="false" />
         <activity
@@ -71,7 +76,9 @@
         <activity android:name=".functions.ui.listview.TestListViewActivity" />
         <activity android:name=".functions.util.UtilTestActivity" />
         <activity android:name=".functions.components.ComponentActivity" />
-        <activity android:name=".functions.logic.LogicListActivity" />
+        <activity
+            android:name=".functions.logic.LogicListActivity"
+            />
         <activity android:name=".functions.ui.UITestListActivity" />
         <activity android:name=".functions.test.TestActivity1" />
         <activity android:name=".functions.ui.layout_test_1.LayoutTest1Activity" />
@@ -145,6 +152,9 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider1_file_paths" />
         </provider>
+
+        <service android:name=".functions.logic.testHermes.HermesService$HermesService0" />
+<!--        <service android:name=".functions.logic.content_provider.MyHermesProxyService$HermesService0" />-->
     </application>
 
 </manifest>

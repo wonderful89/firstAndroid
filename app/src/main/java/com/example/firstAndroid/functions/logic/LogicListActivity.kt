@@ -9,18 +9,12 @@ import android.widget.ArrayAdapter
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.LogUtils
 import com.example.firstAndroid.R
-import com.example.firstAndroid.TestListActivity
 import com.example.firstAndroid.base.BaseActivity
 import com.example.firstAndroid.base.utils.FileConstants
 import com.example.firstAndroid.databinding.ActivityTestListBinding
-import com.example.firstAndroid.functions.logic.purefunction.JavaDemo
 import com.example.firstAndroid.functions.logic.purefunction.WeakRef
 import com.example.firstAndroid.functions.logic.purefunction.entry
-import com.qqz.baselib.IPerson
 import java.lang.Exception
-import java.lang.ref.Reference
-import java.lang.ref.ReferenceQueue
-import java.lang.ref.WeakReference
 import java.util.*
 
 //import kotlinx.android.synthetic.main.activity_test_list.*
@@ -46,7 +40,12 @@ class LogicListActivity : BaseActivity() {
 
 //        testWeakArray.add(this)
 
-        startService(persionServiceIntent)
+        try {
+            startService(persionServiceIntent)
+        } catch (e:Exception) {
+            Log.e(tag, "ee = $e")
+        }
+
 
         val lists = LogicTest.values().map { item -> item.title }
         val arrayAdapter2 = ArrayAdapter(this, R.layout.item_simple_list_0, lists)

@@ -1,18 +1,19 @@
 package com.example.firstAndroid
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.util.Log
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import com.example.firstAndroid.databinding.ActivityMainBinding
 import com.example.firstAndroid.databinding.Content2MainBinding
+import com.google.android.material.snackbar.Snackbar
+import xiaofei.library.hermes.Hermes
+import javax.inject.Singleton
 
 class MainActivity : AppCompatActivity() {
 

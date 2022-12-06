@@ -10,6 +10,6 @@ class ServerApplication: Application() {
     override fun onCreate() {
         super.onCreate()
 
-        Log.e(tag,"process info = ")
+        Log.e(tag,"onCreate process info = ")
     }
 }
